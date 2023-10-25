@@ -30,6 +30,10 @@ export default defineConfig({
             name: 'JetBrains Mono',
             styles: 'ital,wght@0,400;1,200',
           },
+          {
+            name: 'Poppins',
+            styles: 'ital,wght@0,400;1,200',
+          },
         ],
       },
     }),
