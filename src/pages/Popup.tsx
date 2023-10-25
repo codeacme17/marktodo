@@ -3,7 +3,7 @@ import { MarkTable } from '@/components/mark-table'
 
 export default function () {
   return (
-    <section>
+    <section className="h-full flex flex-col">
       <Navbar />
       <MarkTable />
     </section>

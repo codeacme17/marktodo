@@ -1,4 +1,5 @@
 import React from 'react'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
@@ -14,6 +15,8 @@ type TableDataItem = {
 type Level = 'A' | 'B' | 'C'
 
 export const MarkTable = () => {
+  const [parent] = useAutoAnimate<HTMLDivElement>()
+
   const [tableData, setTableData] = React.useState<TableDataItem[]>([
     {
       label: '779. K-th Symbol in Grammarl',
@@ -36,8 +39,8 @@ export const MarkTable = () => {
 
     if (level) handleLevel(item, level)
 
-    setTableData(
-      tableData.map((dataItem) =>
+    setTableData((pre) =>
+      pre.map((dataItem) =>
         dataItem === item ? { ...item, checked } : dataItem
       )
     )
@@ -45,80 +48,83 @@ export const MarkTable = () => {
 
   const handleLevel = (item: TableDataItem, level: Level) => {
     // TODO: handle memory level
+    setTableData(tableData.filter((dataItem) => dataItem.src !== item.src))
   }
 
   return (
-    <Table className="pt-3">
-      <TableBody>
-        {tableData.map((item) => (
-          <TableRow className="relative" key={item.src}>
-            <TableCell className="font-medium">
-              <a
-                className="decoration-1 underline-offset-4 text-sm font-medium hover:underline"
-                href={item.src}
-                target="_blank"
-              >
-                {item.label}
-              </a>
-
-              <p className="text-muted-foreground text-sm flex items-center mt-1">
-                <img
-                  height="16"
-                  width="16"
-                  className="mr-2"
-                  src={`https://cdn.simpleicons.org/${
-                    item.srcLabel.split('.')[0]
-                  }/gray`}
-                />
-                {item.srcLabel}
-              </p>
-            </TableCell>
-
-            <TableCell className="text-right">
-              <Button
-                size="icon"
-                variant="outline"
-                className="w-8 h-8"
-                onClick={() => handleChecked(item, true)}
-              >
-                <CheckCircle
-                  className="w-4 h-4 stroke-green-500"
-                  strokeWidth="3px"
-                />
-              </Button>
-              {item.checked}
-            </TableCell>
-
-            {item.checked && (
-              <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-md flex justify-center items-center">
-                <XCircle
-                  className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
-                  onClick={() => handleChecked(item, false)}
-                />
-
-                <Button
-                  className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
-                  onClick={() => handleChecked(item, false, 'A')}
+    <section className="pt-14 px-3 flex-1">
+      <Table>
+        <TableBody ref={parent}>
+          {tableData.map((item) => (
+            <TableRow className="relative" key={item.src}>
+              <TableCell className="font-medium">
+                <a
+                  className="decoration-1 underline-offset-4 text-sm font-medium hover:underline"
+                  href={item.src}
+                  target="_blank"
                 >
-                  A
-                </Button>
+                  {item.label}
+                </a>
+
+                <p className="text-muted-foreground text-sm flex items-center mt-1">
+                  <img
+                    height="16"
+                    width="16"
+                    className="mr-2"
+                    src={`https://cdn.simpleicons.org/${
+                      item.srcLabel.split('.')[0]
+                    }/gray`}
+                  />
+                  {item.srcLabel}
+                </p>
+              </TableCell>
+
+              <TableCell className="text-right">
                 <Button
-                  className="w-8 h-8 mr-2  bg-amber-600 dark:bg-amber-400 font-black"
-                  onClick={() => handleChecked(item, false, 'B')}
+                  size="icon"
+                  variant="outline"
+                  className="w-8 h-8"
+                  onClick={() => handleChecked(item, true)}
                 >
-                  B
+                  <CheckCircle
+                    className="w-4 h-4 stroke-green-500"
+                    strokeWidth="3px"
+                  />
                 </Button>
-                <Button
-                  className="w-8 h-8 bg-rose-600 dark:bg-rose-400 font-black"
-                  onClick={() => handleChecked(item, false, 'C')}
-                >
-                  C
-                </Button>
-              </div>
-            )}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+                {item.checked}
+              </TableCell>
+
+              {item.checked && (
+                <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-md flex justify-center items-center">
+                  <XCircle
+                    className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
+                    onClick={() => handleChecked(item, false)}
+                  />
+
+                  <Button
+                    className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
+                    onClick={() => handleChecked(item, false, 'A')}
+                  >
+                    A
+                  </Button>
+                  <Button
+                    className="w-8 h-8 mr-2  bg-amber-600 dark:bg-amber-400 font-black"
+                    onClick={() => handleChecked(item, false, 'B')}
+                  >
+                    B
+                  </Button>
+                  <Button
+                    className="w-8 h-8 bg-rose-600 dark:bg-rose-400 font-black"
+                    onClick={() => handleChecked(item, false, 'C')}
+                  >
+                    C
+                  </Button>
+                </div>
+              )}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </section>
   )
 }

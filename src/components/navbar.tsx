@@ -12,29 +12,31 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex justify-between items-center pb-2 border-b border-solid border-primary/10">
-      <div className="flex items-center">
-        <Logo />
-        <h2 className="ml-2 text-lg font-[Poppins]">marktodo</h2>
-      </div>
+    <nav className="fixed top-0 w-full p-3">
+      <div className="flex justify-between items-center pb-2 border-b border-solid border-primary/10">
+        <div className="flex items-center">
+          <Logo />
+          <h2 className="ml-2 text-lg font-[Poppins]">marktodo</h2>
+        </div>
 
-      <div>
-        <Button size="icon" variant="ghost" className="w-6 h-6 mr-2">
-          <Settings className="w-4 h-4" />
-        </Button>
+        <div>
+          <Button size="icon" variant="ghost" className="w-6 h-6 mr-2">
+            <Settings className="w-4 h-4" />
+          </Button>
 
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={troggleTheme}
-          className="w-6 h-6"
-        >
-          {theme === 'dark' ? (
-            <Sun className="w-4 h-4" />
-          ) : (
-            <Moon className="w-4 h-4" />
-          )}
-        </Button>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={troggleTheme}
+            className="w-6 h-6"
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4" />
+            ) : (
+              <Moon className="w-4 h-4" />
+            )}
+          </Button>
+        </div>
       </div>
     </nav>
   )
