@@ -1,11 +1,11 @@
 import { Navbar } from '@/components/navbar'
-import { MarkList } from '@/components/mark-list'
+import { MarkTable } from '@/components/mark-table'
 
 export default function () {
   return (
     <section>
       <Navbar />
-      <MarkList />
+      <MarkTable />
     </section>
   )
 }
