@@ -12,7 +12,7 @@ type TableDataItem = {
   checked?: boolean
 }
 
-type Level = 'A' | 'B' | 'C'
+type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
   const [parent] = useAutoAnimate<HTMLDivElement>()
@@ -114,10 +114,16 @@ export const MarkTable = () => {
                     B
                   </Button>
                   <Button
-                    className="w-8 h-8 bg-rose-600 dark:bg-rose-400 font-black"
+                    className="w-8 h-8 mr-2 bg-rose-600 dark:bg-rose-400 font-black"
                     onClick={() => handleChecked(item, false, 'C')}
                   >
                     C
+                  </Button>
+                  <Button
+                    className="w-12 h-8 "
+                    onClick={() => handleChecked(item, false, 'Done')}
+                  >
+                    Done
                   </Button>
                 </div>
               )}
