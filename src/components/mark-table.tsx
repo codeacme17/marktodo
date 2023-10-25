@@ -1,13 +1,8 @@
 import React from 'react'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react'
 
 type TableDataItem = {
   label: string
@@ -26,8 +21,7 @@ export const MarkTable = () => {
       srcLabel: 'leetcode.com',
     },
     {
-      label:
-        '为何 try 里面放 return，finally 还会执行，理解其内部机制',
+      label: '为何 try 里面放 return，finally 还会执行，理解其内部机制',
       src: 'https://github.com/codeacme17/be-frontend-master/blob/main/self-examination/Javascript%20%E5%9F%BA%E7%A1%80/%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/try-finally.md',
       srcLabel: 'github.com',
     },
@@ -96,7 +90,12 @@ export const MarkTable = () => {
             </TableCell>
 
             {item.checked && (
-              <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-sm flex justify-center items-center">
+              <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-md flex justify-center items-center">
+                <XCircle
+                  className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
+                  onClick={() => handleChecked(item, false)}
+                />
+
                 <Button
                   className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
                   onClick={() => handleChecked(item, false, 'A')}
