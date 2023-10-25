@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import Unfonts from 'unplugin-fonts/vite'
 import webExtension, { readJsonFile } from 'vite-plugin-web-extension'
 import path from 'node:path'
 
@@ -17,10 +18,23 @@ function generateManifest() {
 export default defineConfig({
   plugins: [
     react(),
+
     webExtension({
       manifest: generateManifest,
     }),
+
+    Unfonts({
+      google: {
+        families: [
+          {
+            name: 'JetBrains Mono',
+            styles: 'ital,wght@0,400;1,200',
+          },
+        ],
+      },
+    }),
   ],
+
   resolve: {
     alias: {
       '/@react-refresh': path.resolve(
