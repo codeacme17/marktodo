@@ -1,7 +1,6 @@
 export const Logo = () => {
   return (
     <svg
-      fill="#f0569b"
       height="28px"
       width="28px"
       version="1.1"
@@ -9,8 +8,8 @@ export const Logo = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-102.4 -102.4 716.80 716.80"
       enable-background="new 0 0 512 512"
-      stroke="#f0569b"
       transform="rotate(0)"
+      className="fill-brandPrimary stroke-brandPrimary"
     >
       <g
         id="SVGRepo_bgCarrier"
