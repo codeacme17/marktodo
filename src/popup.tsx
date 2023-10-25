@@ -4,7 +4,8 @@ import Popup from './pages/Popup'
 
 ReactDOM.createRoot(document.body).render(
   <React.StrictMode>
-    <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    <Popup />
+    <main className="w-[320px] bg-opacity-0 border-0 p-3">
+      <Popup />
+    </main>
   </React.StrictMode>
 )

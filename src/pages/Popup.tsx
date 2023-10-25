@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 
 export default function () {
@@ -8,10 +9,11 @@ export default function () {
   }, [])
 
   return (
-    <div className="w-32 text-lg">
-      <img src="/icon-with-shadow.svg" />
-      <h1 className="font-sans">vite-plugin-web</h1>
-      <Button variant="outline">Button</Button>
-    </div>
+    <section className="w-32 text-lg">
+      <div className="flex">
+        <Logo />
+        <h1 className="font-bold">marktodo</h1>
+      </div>
+    </section>
   )
 }
