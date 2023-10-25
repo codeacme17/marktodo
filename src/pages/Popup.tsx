@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
 import { Navbar } from '@/components/navbar'
+import { MarkList } from '@/components/mark-list'
 
 export default function () {
   useEffect(() => {
@@ -8,8 +9,9 @@ export default function () {
   }, [])
 
   return (
-    <section className="">
+    <section>
       <Navbar />
+      <MarkList />
     </section>
   )
 }

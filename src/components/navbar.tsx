@@ -12,7 +12,7 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="flex justify-between items-center pb-2 border-b border-solid border-primary/10">
       <div className="flex items-center">
         <Logo />
         <h2 className="font-bold ml-2 text-lg">marktodo</h2>
