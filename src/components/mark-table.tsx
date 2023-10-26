@@ -1,42 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import browser from 'webextension-polyfill'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, Link, XCircle } from 'lucide-react'
 
 export type TableDataItem = {
   label: string
   src: string
   srcLabel: string
+  iconUrl: string
   visible?: boolean
 }
 
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const [tableData, setTableData] = React.useState<TableDataItem[]>([
-    {
-      label: '779. K-th Symbol in Grammarl',
-      src: 'https://leetcode.com/problems/k-th-symbol-in-grammar/?envType=daily-question&envId=2023-10-25',
-      srcLabel: 'leetcode.com',
-    },
-    {
-      label:
-        '为何 try 里面放 return，finally 还会执行，理解其内部机制',
-      src: 'https://github.com/codeacme17/be-frontend-master/blob/main/self-examination/Javascript%20%E5%9F%BA%E7%A1%80/%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/try-finally.md',
-      srcLabel: 'github.com',
-    },
-  ])
+  const getStoragedData = async () => {
+    const response = await browser.storage.local.get(['marktodo-data-list'])
+    setTableData(response['marktodo-data-list'] || [])
+  }
 
-  const handleMaskVisible = (
-    item: TableDataItem,
-    visible: boolean
-  ) => {
+  useEffect(() => {
+    getStoragedData()
+  }, [])
+
+  const [tableData, setTableData] = React.useState<TableDataItem[]>([])
+
+  const handleMaskVisible = (item: TableDataItem, visible: boolean) => {
     setTableData(
       tableData.map((dataItem) =>
         dataItem === item ? { ...item, visible } : dataItem
@@ -44,13 +35,8 @@ export const MarkTable = () => {
     )
   }
 
-  const handleSelectLevel = async (
-    item: TableDataItem,
-    level: Level
-  ) => {
-    setTableData(
-      tableData.filter((dataItem) => dataItem.src !== item.src)
-    )
+  const handleSelectLevel = async (item: TableDataItem, level: Level) => {
+    setTableData(tableData.filter((dataItem) => dataItem.src !== item.src))
   }
 
   return (
@@ -73,9 +59,7 @@ export const MarkTable = () => {
                     height="16"
                     width="16"
                     className="mr-2"
-                    src={`https://cdn.simpleicons.org/${
-                      item.srcLabel.split('.')[0]
-                    }/gray`}
+                    src={item.iconUrl}
                   />
                   {item.srcLabel}
                 </p>

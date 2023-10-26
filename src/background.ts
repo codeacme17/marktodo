@@ -42,6 +42,7 @@ async function handleStorage(response: any, info: any) {
     label: response.linkText,
     src: info.linkUrl,
     srcLabel: generateSrcLabel(info.linkUrl),
+    iconUrl: response.iconUrl,
   })
 
   await browser.storage.local.set({
