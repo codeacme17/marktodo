@@ -80,3 +80,16 @@
     font-size: 14px;
   }
 }
+
+/* 通用样式 */
+::-webkit-scrollbar {
+  @apply w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary-foreground;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary;
+}
