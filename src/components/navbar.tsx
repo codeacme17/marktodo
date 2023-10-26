@@ -12,8 +12,8 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="fixed top-0 w-full p-3">
-      <div className="flex justify-between items-center pb-2 border-b border-solid border-primary/10">
+    <nav className="fixed top-0 w-full p-3 pb-0 z-20 backdrop-blur-md">
+      <div className="flex h-full justify-between items-center border-b pb-3 border-solid border-primary/10">
         <div className="flex items-center">
           <Logo />
           <h2 className="ml-2 text-lg font-[Poppins]">marktodo</h2>

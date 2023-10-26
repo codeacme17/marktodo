@@ -3,7 +3,7 @@ import browser from 'webextension-polyfill'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Link, XCircle } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react'
 
 export type TableDataItem = {
   label: string
