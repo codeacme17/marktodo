@@ -13,7 +13,7 @@ type TableDataItem = {
   label: string
   src: string
   srcLabel: string
-  checked?: boolean
+  visible?: boolean
 }
 
 type Level = 'A' | 'B' | 'C' | 'Done'
@@ -33,24 +33,21 @@ export const MarkTable = () => {
     },
   ])
 
-  const handleChecked = async (
+  const handleMaskVisible = (
     item: TableDataItem,
-    checked: boolean,
-    level?: Level
+    visible: boolean
   ) => {
-    item.checked = !item.checked
-
-    if (level) handleLevel(item, level)
-
-    setTableData((pre) =>
-      pre.map((dataItem) =>
-        dataItem === item ? { ...item, checked } : dataItem
+    setTableData(
+      tableData.map((dataItem) =>
+        dataItem === item ? { ...item, visible } : dataItem
       )
     )
   }
 
-  const handleLevel = (item: TableDataItem, level: Level) => {
-    // TODO: handle memory level
+  const handleSelectLevel = async (
+    item: TableDataItem,
+    level: Level
+  ) => {
     setTableData(
       tableData.filter((dataItem) => dataItem.src !== item.src)
     )
@@ -89,44 +86,43 @@ export const MarkTable = () => {
                   size="icon"
                   variant="outline"
                   className="w-8 h-8"
-                  onClick={() => handleChecked(item, true)}
+                  onClick={() => handleMaskVisible(item, true)}
                 >
                   <CheckCircle
                     className="w-4 h-4 stroke-green-500"
                     strokeWidth="3px"
                   />
                 </Button>
-                {item.checked}
               </TableCell>
 
-              {item.checked && (
+              {item.visible && (
                 <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-md flex justify-center items-center">
                   <XCircle
                     className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
-                    onClick={() => handleChecked(item, false)}
+                    onClick={() => handleMaskVisible(item, false)}
                   />
 
                   <Button
                     className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
-                    onClick={() => handleChecked(item, false, 'A')}
+                    onClick={() => handleSelectLevel(item, 'A')}
                   >
                     A
                   </Button>
                   <Button
                     className="w-8 h-8 mr-2  bg-amber-600 dark:bg-amber-400 font-black"
-                    onClick={() => handleChecked(item, false, 'B')}
+                    onClick={() => handleSelectLevel(item, 'B')}
                   >
                     B
                   </Button>
                   <Button
                     className="w-8 h-8 mr-2 bg-rose-600 dark:bg-rose-400 font-black"
-                    onClick={() => handleChecked(item, false, 'C')}
+                    onClick={() => handleSelectLevel(item, 'C')}
                   >
                     C
                   </Button>
                   <Button
                     className="w-12 h-8 "
-                    onClick={() => handleChecked(item, false, 'Done')}
+                    onClick={() => handleSelectLevel(item, 'Done')}
                   >
                     Done
                   </Button>
