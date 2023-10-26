@@ -1,7 +1,11 @@
 import React from 'react'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, XCircle } from 'lucide-react'
 
@@ -15,8 +19,6 @@ type TableDataItem = {
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const [parent] = useAutoAnimate<HTMLDivElement>()
-
   const [tableData, setTableData] = React.useState<TableDataItem[]>([
     {
       label: '779. K-th Symbol in Grammarl',
@@ -24,7 +26,8 @@ export const MarkTable = () => {
       srcLabel: 'leetcode.com',
     },
     {
-      label: '为何 try 里面放 return，finally 还会执行，理解其内部机制',
+      label:
+        '为何 try 里面放 return，finally 还会执行，理解其内部机制',
       src: 'https://github.com/codeacme17/be-frontend-master/blob/main/self-examination/Javascript%20%E5%9F%BA%E7%A1%80/%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/try-finally.md',
       srcLabel: 'github.com',
     },
@@ -48,13 +51,15 @@ export const MarkTable = () => {
 
   const handleLevel = (item: TableDataItem, level: Level) => {
     // TODO: handle memory level
-    setTableData(tableData.filter((dataItem) => dataItem.src !== item.src))
+    setTableData(
+      tableData.filter((dataItem) => dataItem.src !== item.src)
+    )
   }
 
   return (
     <section className="pt-14 px-3 flex-1">
       <Table>
-        <TableBody ref={parent}>
+        <TableBody>
           {tableData.map((item) => (
             <TableRow className="relative" key={item.src}>
               <TableCell className="font-medium">
