@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 ReactDOM.createRoot(document.body).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <main className="w-[420px] h-[500px]">
+      <main className="w-[420px] mex-h-[500px]">
         <Popup />
       </main>
     </ThemeProvider>

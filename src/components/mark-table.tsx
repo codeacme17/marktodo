@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, Tags, XCircle } from 'lucide-react'
 
 type TableDataItem = {
   label: string
@@ -54,7 +54,7 @@ export const MarkTable = () => {
   }
 
   return (
-    <section className="pt-14 px-3 flex-1">
+    <section className="pt-14 pb-3 px-3 flex-1">
       <Table>
         <TableBody>
           {tableData.map((item) => (
@@ -130,6 +130,15 @@ export const MarkTable = () => {
               )}
             </TableRow>
           ))}
+
+          {/* Empty Hint */}
+          {!tableData.length && (
+            <TableRow>
+              <TableCell className="text-center text-primary/50 select-none">
+                There is currently no data available
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </section>
