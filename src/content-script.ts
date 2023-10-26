@@ -1,30 +1,21 @@
-// Both lines below just added to make build files look different than the source file.
 import browser from 'webextension-polyfill'
-console.log(
-  `Content script from ${browser.runtime.getManifest().name}!`
+
+console.log('content script loaded')
+
+let lastRightClickedLinkText: any = null
+
+document.addEventListener('contextmenu', (event) => {
+  if (!(event.target instanceof HTMLAnchorElement)) return
+
+  if (event.target.hash === '') {
+    lastRightClickedLinkText = event.target.textContent
+  } else lastRightClickedLinkText = event.target.hash
+})
+
+browser.runtime.onMessage.addListener(
+  (message, sender, sendResponse: any) => {
+    if (message.action !== 'get-link-text') return
+    sendResponse({ linkText: lastRightClickedLinkText })
+    lastRightClickedLinkText = null
+  }
 )
-
-// Throw a fake error.
-throw new Error('fake error')
-
-// import browser from 'webextension-polyfill'
-
-// let lastRightClickedLinkText: any = null
-
-// console.log('content script loaded')
-
-// document.addEventListener('contextmenu', (event) => {
-//   console.log(event.target!)
-//   if (event.target instanceof HTMLAnchorElement) {
-//     lastRightClickedLinkText = event.target.textContent
-//   }
-// })
-
-// browser.runtime.onMessage.addListener(
-//   (message, sender, sendResponse: any) => {
-//     if (message.action === 'get-link-text') {
-//       sendResponse({ linkText: lastRightClickedLinkText })
-//       lastRightClickedLinkText = null // Optionally reset after use
-//     }
-//   }
-// )

@@ -9,7 +9,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { CheckCircle, XCircle } from 'lucide-react'
 
-type TableDataItem = {
+export type TableDataItem = {
   label: string
   src: string
   srcLabel: string

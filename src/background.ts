@@ -1,7 +1,11 @@
 import browser from 'webextension-polyfill'
+import { TableDataItem } from '@/components/mark-table'
 
-// Create a context menu item
-browser.runtime.onInstalled.addListener(() => {
+console.log('background script loaded')
+
+// Init
+browser.runtime.onInstalled.addListener(async () => {
+  // Create a context menu which will only show up for link.
   browser.contextMenus.create({
     id: 'marktodo-menu-item',
     title: 'Mark to to-do list',
@@ -10,31 +14,43 @@ browser.runtime.onInstalled.addListener(() => {
 })
 
 // Listen for clicks on the context menu item
-browser.contextMenus.onClicked.addListener((info, tab) => {
-  console.log(info)
+browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (
-    info.menuItemId === 'marktodo-menu-item' &&
-    info.linkUrl &&
-    tab?.id
-  ) {
-    browser.tabs
-      .sendMessage(tab.id, { action: 'get-link-text' })
-      .then((response) => {
-        if (response && response.linkText) {
-          localStorage.setItem('linkUrl', info.linkUrl!)
-          localStorage.setItem('linkText', response.linkText)
-        }
-      })
-      .catch((error) =>
-        console.error('Error sending message:', error)
-      )
-  }
+    info.menuItemId !== 'marktodo-menu-item' ||
+    !info.linkUrl ||
+    !tab?.id
+  )
+    return
+
+  const response = await browser.tabs.sendMessage(tab.id, {
+    action: 'get-link-text',
+  })
+  if (!response || !response.linkText) return
+  await handleStorage(response, info)
+  console.log(await browser.storage.local.get(['marktodo-data-list']))
 })
 
-const handleLinkUrl = (linkUrl: string) => {
-  const res = {
-    label: '779. K-th Symbol in Grammarl',
-    src: 'https://leetcode.com/problems/k-th-symbol-in-grammar/?envType=daily-question&envId=2023-10-25',
-    srcLabel: 'leetcode.com',
-  }
+// Handle local storagre events
+async function handleStorage(response: any, info: any) {
+  const storageResult = await browser.storage.local.get([
+    'marktodo-data-list',
+  ])
+
+  const storagedDataList: TableDataItem[] =
+    storageResult['marktodo-data-list'] || []
+
+  storagedDataList.push({
+    label: response.linkText,
+    src: info.linkUrl,
+    srcLabel: generateSrcLabel(info.linkUrl),
+  })
+
+  await browser.storage.local.set({
+    'marktodo-data-list': storagedDataList,
+  })
+}
+
+function generateSrcLabel(urlString: string): string {
+  const url = new URL(urlString)
+  return url.hostname
 }
