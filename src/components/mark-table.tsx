@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import browser from 'webextension-polyfill'
+import { useStoragedDataList } from '@/lib/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
@@ -16,34 +17,27 @@ export type TableDataItem = {
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const getStoragedData = async () => {
-    const response = await browser.storage.local.get(['marktodo-data-list'])
-    setTableData(response['marktodo-data-list'] || [])
-  }
-
-  useEffect(() => {
-    getStoragedData()
-  }, [])
-
-  const [tableData, setTableData] = React.useState<TableDataItem[]>([])
+  const [storagedDataList, setStoragedDataList] = useStoragedDataList()
 
   const handleMaskVisible = (item: TableDataItem, visible: boolean) => {
-    setTableData(
-      tableData.map((dataItem) =>
+    setStoragedDataList(
+      storagedDataList.map((dataItem) =>
         dataItem === item ? { ...item, visible } : dataItem
       )
     )
   }
 
   const handleSelectLevel = async (item: TableDataItem, level: Level) => {
-    setTableData(tableData.filter((dataItem) => dataItem.src !== item.src))
+    setStoragedDataList(
+      storagedDataList.filter((dataItem) => dataItem.src !== item.src)
+    )
   }
 
   return (
     <section className="pt-14 pb-3 px-3 flex-1">
       <Table>
         <TableBody>
-          {tableData.map((item) => (
+          {storagedDataList.map((item) => (
             <TableRow className="relative" key={item.src}>
               <TableCell className="font-medium">
                 <a
@@ -116,7 +110,7 @@ export const MarkTable = () => {
           ))}
 
           {/* Empty Hint */}
-          {!tableData.length && (
+          {!storagedDataList.length && (
             <TableRow>
               <TableCell className="text-center text-primary/50 select-none">
                 There is currently no data available
