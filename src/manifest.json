@@ -8,6 +8,15 @@
     "96": "icon/96.png",
     "128": "icon/128.png"
   },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "tabs",
+    "webRequest",
+    "webRequestBlocking",
+    "http://*/*",
+    "https://*/*"
+  ],
   "{{chrome}}.action": {
     "default_popup": "src/popup.html"
   },
@@ -17,5 +26,11 @@
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://vitejs.dev/*"],
+      "js": ["src/content-script.ts"]
+    }
+  ]
 }

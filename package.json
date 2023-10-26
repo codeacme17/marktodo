@@ -7,6 +7,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "vite": "vite",
     "dev": "tsc && vite build --watch --mode development",
     "build": "tsc && vite build"
   },

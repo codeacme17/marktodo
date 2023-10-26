@@ -7,22 +7,22 @@ export const Logo = () => {
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-102.4 -102.4 716.80 716.80"
-      enable-background="new 0 0 512 512"
+      enableBackground="new 0 0 512 512"
       transform="rotate(0)"
       className="fill-brandPrimary stroke-brandPrimary"
     >
       <g
         id="SVGRepo_bgCarrier"
-        stroke-width="0"
+        strokeWidth="0"
         transform="translate(0,0), scale(1)"
       />
 
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         stroke="#CCCCCC"
-        stroke-width="3.072"
+        strokeWidth="3.072"
       />
 
       <g id="SVGRepo_iconCarrier">

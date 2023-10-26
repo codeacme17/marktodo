@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom/client'
 import Popup from './pages/Popup'
 import { ThemeProvider } from '@/components/theme-provider'
 
-ReactDOM.createRoot(document.body).render(
+const rootElement = document.getElementById('root')
+
+ReactDOM.createRoot(rootElement!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <main className="w-[420px] mex-h-[500px]">

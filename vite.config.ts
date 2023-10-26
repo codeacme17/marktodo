@@ -9,6 +9,7 @@ function generateManifest() {
   const pkg = readJsonFile('package.json')
   return {
     name: pkg.name,
+    auther: pkg.author,
     description: pkg.description,
     version: pkg.version,
     ...manifest,
@@ -21,21 +22,6 @@ export default defineConfig({
 
     webExtension({
       manifest: generateManifest,
-    }),
-
-    Unfonts({
-      google: {
-        families: [
-          {
-            name: 'JetBrains Mono',
-            styles: 'ital,wght@0,400;1,200',
-          },
-          {
-            name: 'Poppins',
-            styles: 'ital,wght@0,400;1,200',
-          },
-        ],
-      },
     }),
   ],
 

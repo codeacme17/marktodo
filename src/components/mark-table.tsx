@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Tags, XCircle } from 'lucide-react'
+import { CheckCircle, XCircle } from 'lucide-react'
 
 type TableDataItem = {
   label: string
