@@ -15,11 +15,7 @@ browser.runtime.onInstalled.addListener(async () => {
 
 // Listen for clicks on the context menu item
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (
-    info.menuItemId !== 'marktodo-menu-item' ||
-    !info.linkUrl ||
-    !tab?.id
-  )
+  if (info.menuItemId !== 'marktodo-menu-item' || !info.linkUrl || !tab?.id)
     return
 
   const response = await browser.tabs.sendMessage(tab.id, {
@@ -32,12 +28,15 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
 // Handle local storagre events
 async function handleStorage(response: any, info: any) {
-  const storageResult = await browser.storage.local.get([
-    'marktodo-data-list',
-  ])
+  const storageResult = await browser.storage.local.get(['marktodo-data-list'])
 
   const storagedDataList: TableDataItem[] =
     storageResult['marktodo-data-list'] || []
+
+  // If the link is already in the list
+  const isThere = storagedDataList.find((item) => item.src === info.linkUrl)
+  // , do nothing
+  if (isThere) return console.log("It's already in the list")
 
   storagedDataList.push({
     label: response.linkText,
