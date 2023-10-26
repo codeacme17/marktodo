@@ -21,9 +21,9 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   const response = await browser.tabs.sendMessage(tab.id, {
     action: 'get-link-text',
   })
+
   if (!response || !response.linkText) return
   await handleStorage(response, info)
-  console.log(await browser.storage.local.get(['marktodo-data-list']))
 })
 
 // Handle local storagre events

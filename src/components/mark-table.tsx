@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react'
-import browser from 'webextension-polyfill'
 import { useStoragedDataList } from '@/lib/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
@@ -11,18 +9,19 @@ export type TableDataItem = {
   src: string
   srcLabel: string
   iconUrl: string
-  visible?: boolean
+  maskVisible?: boolean
 }
 
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const [storagedDataList, setStoragedDataList] = useStoragedDataList()
+  const [storagedDataList, setStoragedDataList] =
+    useStoragedDataList('marktodo-data-list')
 
-  const handleMaskVisible = (item: TableDataItem, visible: boolean) => {
+  const handleMaskVisible = (item: TableDataItem, maskVisible: boolean) => {
     setStoragedDataList(
       storagedDataList.map((dataItem) =>
-        dataItem === item ? { ...item, visible } : dataItem
+        dataItem === item ? { ...item, maskVisible } : dataItem
       )
     )
   }
@@ -73,7 +72,7 @@ export const MarkTable = () => {
                 </Button>
               </TableCell>
 
-              {item.visible && (
+              {item.maskVisible && (
                 <div className="w-full h-full absolute top-0 left-0 bg-primary/20 rounded-md backdrop-blur-md flex justify-center items-center">
                   <XCircle
                     className="w-5 h-5 absolute right-2 top-2 cursor-pointer"
