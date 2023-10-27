@@ -7,7 +7,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, XCircle } from 'lucide-react'
+import { CheckCircle, CircleDot, XCircle } from 'lucide-react'
 
 export type TableDataItem = {
   label: string
@@ -55,14 +55,26 @@ export const MarkTable = () => {
             <TableRow className="relative" key={item.src}>
               <TableCell className="font-medium">
                 <a
-                  className="decoration-1 underline-offset-4 text-sm font-medium hover:underline"
+                  className="decoration-1 flex items-center underline-offset-4 text-sm font-medium hover:underline"
                   href={item.src}
                   target="_blank"
                 >
+                  {item.priority === 3 && (
+                    <CircleDot className="w-4 h-4 mr-2 fill-red-500 stroke-current" />
+                  )}
+
+                  {item.priority === 2 && (
+                    <CircleDot className="w-4 h-4 mr-2 fill-orange-500 stroke-current" />
+                  )}
+
+                  {item.priority === 1 && (
+                    <CircleDot className="w-4 h-4 mr-2 fill-green-500 stroke-current" />
+                  )}
+
                   {item.label}
                 </a>
 
-                <p className="text-muted-foreground text-sm flex items-center mt-1">
+                <p className="text-muted-foreground text-sm flex items-center mt-1 ml-6">
                   <img
                     height="16"
                     width="16"
