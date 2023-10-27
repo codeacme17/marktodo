@@ -3,11 +3,14 @@ import { injectToastAnimation, showToast } from '@/lib/handle-toast'
 
 console.log('content script loaded')
 
-let linkText: any = null
-let iconUrl: string = ''
-
+// Inject the toast animation
 injectToastAnimation()
 
+let linkText: any = null // Link text to be sent to the background script
+let iconUrl: string = '' // The Tab icon url to be sent to the background script
+
+// Listen for context menu clicks,
+// get the link text and send it to the background script
 document.addEventListener('contextmenu', (event) => {
   if (!(event.target instanceof HTMLAnchorElement)) return
 
@@ -22,10 +25,11 @@ document.addEventListener('contextmenu', (event) => {
   } else linkText = event.target.hash
 })
 
+// Listen for messages from the background script
 browser.runtime.onMessage.addListener(
   (message, sender, sendResponse: any) => {
-    if (message.action === 'get-link-text')
-      handleGetLinkText(message, sendResponse)
+    if (message.action === 'get-link-info')
+      responseGetLinkInfoAction(sendResponse)
 
     if (message.action === 'show-toast')
       showToast({
@@ -35,12 +39,9 @@ browser.runtime.onMessage.addListener(
   }
 )
 
-function handleGetLinkText(message: any, sendResponse: any) {
-  if (message.action !== 'get-link-text') return
+// Send the link info to the background script
+function responseGetLinkInfoAction(sendResponse: any) {
   sendResponse({ linkText, iconUrl })
   linkText = null
   iconUrl = ''
-  showToast({
-    message: 'Marked to to-do list',
-  })
 }

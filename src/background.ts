@@ -3,7 +3,6 @@ import { TableDataItem } from '@/components/mark-table'
 
 console.log('background script loaded')
 
-// Init
 browser.runtime.onInstalled.addListener(async () => {
   // Create a context menu which will only show up for link.
   browser.contextMenus.create({
@@ -23,7 +22,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     return
 
   const response = await browser.tabs.sendMessage(tab.id, {
-    action: 'get-link-text',
+    action: 'get-link-info',
   })
 
   if (!response || !response.linkText) return
@@ -47,7 +46,6 @@ async function handleStorage(
   const isThere = storagedDataList.find(
     (item) => item.src === info.linkUrl
   )
-
   if (isThere)
     return await browser.tabs.sendMessage(tab.id!, {
       action: 'show-toast',
@@ -55,6 +53,7 @@ async function handleStorage(
       type: 'error',
     })
 
+  // Add the link to the list
   storagedDataList.push({
     label: response.linkText,
     src: info.linkUrl,
@@ -62,8 +61,15 @@ async function handleStorage(
     iconUrl: response.iconUrl,
   })
 
+  // Save the list to local storage
   await browser.storage.local.set({
     'marktodo-data-list': storagedDataList,
+  })
+
+  await browser.tabs.sendMessage(tab.id!, {
+    action: 'show-toast',
+    message: 'Marked to to-do list',
+    type: 'primary',
   })
 }
 

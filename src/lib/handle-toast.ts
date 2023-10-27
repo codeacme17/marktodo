@@ -24,7 +24,7 @@ export function showToast({
   toast.style.padding = '10px 20px'
   toast.style.borderRadius = '5px'
   toast.style.zIndex = '1000'
-  toast.style.fontFamily = 'Arial, sans-serif'
+  toast.style.fontFamily = 'robotomono'
   toast.style.fontSize = '14px'
   toast.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)'
 
@@ -72,7 +72,7 @@ function getColors(type: ToastType) {
   if (type === 'primary')
     res.bgColor = systemTheme === 'dark' ? '#e5e5e5' : '#171717'
   else if (type === 'error')
-    res.bgColor = systemTheme === 'dark' ? '#f87171' : '#dc2626'
+    res.bgColor = systemTheme === 'dark' ? '#e11d48' : '#dc2626'
   else if (type === 'warning')
     res.bgColor = systemTheme === 'dark' ? '#fbbf24' : '#d97706'
 
