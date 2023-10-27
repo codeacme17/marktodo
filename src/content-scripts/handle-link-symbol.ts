@@ -1,17 +1,18 @@
 import { getStoragedDataList } from '@/lib/handle-storage'
 
+const innerSymbol = `<span id="_marktodo_symbol_"> 🔖</span>`
+
 export const renderLinkSymbolOnWeb = async () => {
-  console.log('gg')
-
   const storagedDataList = await getStoragedDataList()
-
-  console.log(storagedDataList)
-
   const linksCollection = [...document.querySelectorAll('a')]
 
-  linksCollection.map((item) => {
-    if (storagedDataList.find((i) => i.src === item.href)) {
-      item.append('🔖')
+  linksCollection.forEach((item) => {
+    const isMarked = storagedDataList.some((i) => i.src === item.href)
+
+    if (isMarked && !item.innerHTML.includes(innerSymbol)) {
+      item.innerHTML += innerSymbol
+    } else if (!isMarked && item.innerHTML.includes(innerSymbol)) {
+      item.innerHTML = item.innerHTML.replace(innerSymbol, '')
     }
   })
 }

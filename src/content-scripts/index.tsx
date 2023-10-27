@@ -1,6 +1,8 @@
 import browser from 'webextension-polyfill'
 import { injectToastAnimation, showToast } from './handle-toast'
 import { renderLinkSymbolOnWeb } from './handle-link-symbol'
+import { ListDataItem } from '@/components/mark-table'
+import { getStoragedDataList } from '@/lib/handle-storage'
 
 // Inject the toast animation
 injectToastAnimation()
@@ -30,22 +32,19 @@ document.addEventListener('contextmenu', async (event) => {
 })
 
 // Listen for messages from the background script
-browser.runtime.onMessage.addListener(
-  (message, _, sendResponse: any) => {
-    console.log(message.action, 'message')
+browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
+  console.log(message.action, 'message')
 
-    if (message.action === 'get-link-info')
-      responseLinkInfo(sendResponse)
+  if (message.action === 'get-link-info') responseLinkInfo(sendResponse)
 
-    if (message.action === 'successed-add') handleSuccessedAdd()
+  if (message.action === 'successed-add') handleSuccessedAdd()
 
-    if (message.action === 'show-toast')
-      showToast({
-        message: message.message,
-        type: message.type,
-      })
-  }
-)
+  if (message.action === 'show-toast')
+    showToast({
+      message: message.message,
+      type: message.type,
+    })
+})
 
 // Send the link info to the background script
 function responseLinkInfo(sendResponse: any) {
@@ -55,6 +54,13 @@ function responseLinkInfo(sendResponse: any) {
 }
 
 function handleSuccessedAdd() {
-  currentElement?.append('🔖')
   currentElement = null
 }
+
+browser.storage.local.onChanged.addListener(async (changes) => {
+  const oldValue: ListDataItem[] = changes['marktodo-data-list'].oldValue
+  const newValue: ListDataItem[] = changes['marktodo-data-list'].newValue
+
+  // Only render the symbol when the length of the list changes
+  if (oldValue.length !== newValue.length) renderLinkSymbolOnWeb()
+})
