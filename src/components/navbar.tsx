@@ -1,14 +1,45 @@
+import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
+import { useStoragedDataList } from '@/lib/use-storaged-data-list'
 
 import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
-import { Moon, Settings, Sun } from 'lucide-react'
+import {
+  Moon,
+  Settings,
+  Sun,
+  ArrowDownNarrowWide,
+  ArrowUpNarrowWide,
+} from 'lucide-react'
+
+type SortType = 'desc' | 'asc'
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme()
 
   const troggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  const [sortType, setSort] = useState<SortType>('desc')
+  const [storagedDataList, setStoragedDataList] = useStoragedDataList(
+    'marktodo-data-list'
+  )
+  const troggleSort = () => {
+    setSort(sortType === 'desc' ? 'asc' : 'desc')
+    handleSort()
+  }
+
+  const handleSort = () => {
+    let temp = storagedDataList.slice()
+
+    if (sortType === 'desc') {
+      temp.sort((a, b) => a.priority - b.priority)
+    } else {
+      temp.sort((a, b) => b.priority - a.priority)
+    }
+
+    setStoragedDataList(temp)
   }
 
   return (
@@ -20,7 +51,24 @@ export const Navbar = () => {
         </div>
 
         <div>
-          <Button size="icon" variant="ghost" className="w-6 h-6 mr-2">
+          <Button
+            size="icon"
+            variant="ghost"
+            className="w-6 h-6 mr-2"
+            onClick={troggleSort}
+          >
+            {sortType === 'desc' ? (
+              <ArrowDownNarrowWide className="w-4 h-4" />
+            ) : (
+              <ArrowUpNarrowWide className="w-4 h-4" />
+            )}
+          </Button>
+
+          <Button
+            size="icon"
+            variant="ghost"
+            className="w-6 h-6 mr-2"
+          >
             <Settings className="w-4 h-4" />
           </Button>
 

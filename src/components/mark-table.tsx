@@ -18,7 +18,7 @@ export type TableDataItem = {
   maskVisible?: boolean
 }
 
-export type Priority = 1 | 2 | 3
+export type Priority = 1 | 2 | 3 // 1: mild, 2: moderate, 3: critical
 
 type Level = 'A' | 'B' | 'C' | 'Done'
 
@@ -55,34 +55,35 @@ export const MarkTable = () => {
             <TableRow className="relative" key={item.src}>
               <TableCell className="font-medium">
                 <a
-                  className="decoration-1 flex items-center underline-offset-4 text-sm font-medium hover:underline"
+                  className="decoration-1 flex items-center underline-offset-4 font-medium hover:underline"
                   href={item.src}
                   target="_blank"
                 >
                   {item.priority === 3 && (
-                    <CircleDot className="w-4 h-4 mr-2 fill-red-500 stroke-current" />
+                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-red-500 stroke-current" />
                   )}
-
                   {item.priority === 2 && (
-                    <CircleDot className="w-4 h-4 mr-2 fill-orange-500 stroke-current" />
+                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-orange-500 stroke-current" />
                   )}
-
                   {item.priority === 1 && (
-                    <CircleDot className="w-4 h-4 mr-2 fill-green-500 stroke-current" />
+                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-green-500 stroke-current" />
                   )}
-
-                  {item.label}
+                  <span className="flex-1">{item.label}</span>
                 </a>
 
-                <p className="text-muted-foreground text-sm flex items-center mt-1 ml-6">
+                <a
+                  className="text-muted-foreground decoration-1 underline-offset-4 hover:underline text-xs flex items-center mt-1 ml-6"
+                  href={'https://' + item.srcLabel}
+                  target="_blank"
+                >
                   <img
                     height="16"
                     width="16"
-                    className="mr-2"
+                    className="mr-2 grayscale"
                     src={item.iconUrl}
                   />
-                  {item.srcLabel}
-                </p>
+                  <span className="flex-1">{item.srcLabel}</span>
+                </a>
               </TableCell>
 
               <TableCell className="text-right">

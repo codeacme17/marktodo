@@ -20,7 +20,9 @@ type StorageKey = 'marktodo-data-list'
 export const useStoragedDataList = (
   storageKey: StorageKey
 ): [TableDataItem[], (data: TableDataItem[]) => void] => {
-  const [storagedDataList, setStoragedDataList] = useState<TableDataItem[]>([])
+  const [storagedDataList, setStoragedDataList] = useState<
+    TableDataItem[]
+  >([])
 
   browser.storage.local.onChanged.addListener((changes) => {
     setStoragedDataList(changes[storageKey].newValue)
@@ -32,8 +34,18 @@ export const useStoragedDataList = (
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      const storageData = await browser.storage.local.get([storageKey])
-      setStoragedDataList(storageData[storageKey] || [])
+      const storageData = await browser.storage.local.get([
+        storageKey,
+      ])
+      const storagedDataList = storageData[storageKey] || []
+
+      // Sort the data list by priority in descending order
+      setStoragedDataList(
+        storagedDataList.sort(
+          (a: TableDataItem, b: TableDataItem) =>
+            b.priority - a.priority
+        )
+      )
     }
 
     fetchInitialData()
