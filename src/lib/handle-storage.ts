@@ -1,17 +1,17 @@
 import browser from 'webextension-polyfill'
-import { TableDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/components/mark-table'
 import { generateSrcLabel } from '@/lib/utils'
 
 export type StorageKey = 'marktodo-data-list'
 
 export const getStoragedDataList = async (): Promise<
-  TableDataItem[]
+  ListDataItem[]
 > => {
   const storageResult = await browser.storage.local.get([
     'marktodo-data-list',
   ])
 
-  const storagedDataList: TableDataItem[] =
+  const storagedDataList: ListDataItem[] =
     storageResult['marktodo-data-list'] || []
 
   return storagedDataList
@@ -19,7 +19,7 @@ export const getStoragedDataList = async (): Promise<
 
 // Handle local storagre events
 export async function addDataToStrageList(
-  data: TableDataItem,
+  data: ListDataItem,
   tab: browser.Tabs.Tab
 ) {
   const storagedDataList = await getStoragedDataList()
@@ -47,6 +47,10 @@ export async function addDataToStrageList(
   // Save the list to local storage
   await browser.storage.local.set({
     'marktodo-data-list': storagedDataList,
+  })
+
+  await browser.tabs.sendMessage(tab.id!, {
+    action: 'successed-add',
   })
 
   await browser.tabs.sendMessage(tab.id!, {

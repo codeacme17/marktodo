@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { addDataToStrageList } from '@/lib/handle-storage'
-import { TableDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/components/mark-table'
 
 browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
@@ -56,7 +56,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
   if (!response || !response.linkText) return
 
-  const data: TableDataItem = {
+  const data: ListDataItem = {
     label: response.linkText,
     src: info.linkUrl,
     srcLabel: '',

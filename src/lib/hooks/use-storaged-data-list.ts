@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { useEffect, useState } from 'react'
-import { TableDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/components/mark-table'
 import { StorageKey } from '@/lib/handle-storage'
 
 /**
@@ -9,7 +9,7 @@ import { StorageKey } from '@/lib/handle-storage'
  * It also sets up a listener to sync the state whenever the specified local storage item changes.
  *
  * @param {StorageKey} storageKey - The key under which the data list is stored in local storage.
- * @returns {[TableDataItem[], (data: TableDataItem[]) => void]} - A tuple where:
+ * @returns {[ListDataItem[], (data: ListDataItem[]) => void]} - A tuple where:
  *   - The first element is the current state of the stored data list.
  *   - The second element is a function to update the stored data list.
  *
@@ -18,16 +18,16 @@ import { StorageKey } from '@/lib/handle-storage'
  */
 export const useStoragedDataList = (
   storageKey: StorageKey
-): [TableDataItem[], (data: TableDataItem[]) => void] => {
+): [ListDataItem[], (data: ListDataItem[]) => void] => {
   const [storagedDataList, setStoragedDataList] = useState<
-    TableDataItem[]
+    ListDataItem[]
   >([])
 
   browser.storage.local.onChanged.addListener((changes) => {
     setStoragedDataList(changes[storageKey].newValue)
   })
 
-  const updateStoragedDataList = (data: TableDataItem[]) => {
+  const updateStoragedDataList = (data: ListDataItem[]) => {
     browser.storage.local.set({ [storageKey]: data })
   }
 
@@ -41,7 +41,7 @@ export const useStoragedDataList = (
       // Sort the data list by priority in descending order
       setStoragedDataList(
         storagedDataList.sort(
-          (a: TableDataItem, b: TableDataItem) =>
+          (a: ListDataItem, b: ListDataItem) =>
             b.priority - a.priority
         )
       )

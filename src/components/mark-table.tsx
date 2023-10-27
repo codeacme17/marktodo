@@ -9,7 +9,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { CheckCircle, CircleDot, XCircle } from 'lucide-react'
 
-export type TableDataItem = {
+export type ListDataItem = {
   label: string
   src: string
   srcLabel: string
@@ -28,7 +28,7 @@ export const MarkTable = () => {
   )
 
   const handleMaskVisible = (
-    item: TableDataItem,
+    item: ListDataItem,
     maskVisible: boolean
   ) => {
     setStoragedDataList(
@@ -39,7 +39,7 @@ export const MarkTable = () => {
   }
 
   const handleSelectLevel = async (
-    item: TableDataItem,
+    item: ListDataItem,
     level: Level
   ) => {
     setStoragedDataList(
