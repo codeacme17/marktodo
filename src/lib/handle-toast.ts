@@ -39,7 +39,6 @@ export function showToast({
 
 export function injectToastAnimation() {
   const style = document.createElement('style')
-  style.type = 'text/css'
   style.innerHTML = `
   @keyframes _slideFadeIn_marktodo_toast {
     0% {
@@ -72,9 +71,9 @@ function getColors(type: ToastType) {
   if (type === 'primary')
     res.bgColor = systemTheme === 'dark' ? '#e5e5e5' : '#171717'
   else if (type === 'error')
-    res.bgColor = systemTheme === 'dark' ? '#e11d48' : '#dc2626'
+    res.bgColor = systemTheme === 'dark' ? '#fda4af' : '#dc2626'
   else if (type === 'warning')
-    res.bgColor = systemTheme === 'dark' ? '#fbbf24' : '#d97706'
+    res.bgColor = systemTheme === 'dark' ? '#fcd34d' : '#d97706'
 
   res.textColor = systemTheme === 'dark' ? '#262626' : '#e5e5e5'
 

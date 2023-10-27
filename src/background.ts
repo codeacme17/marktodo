@@ -46,12 +46,13 @@ async function handleStorage(
   const isThere = storagedDataList.find(
     (item) => item.src === info.linkUrl
   )
-  if (isThere)
+  if (isThere) {
     return await browser.tabs.sendMessage(tab.id!, {
       action: 'show-toast',
       message: 'The link is already in the list.',
       type: 'error',
     })
+  }
 
   // Add the link to the list
   storagedDataList.push({
