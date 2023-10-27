@@ -27,28 +27,22 @@ browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
     id: 'sub-menu-critical',
     parentId: 'marktodo-menu-item',
-    title: 'critical',
+    title: '  critical',
     contexts: ['link'],
-    type: 'radio',
-    checked: false,
   })
 
   browser.contextMenus.create({
     id: 'sub-menu-moderate',
     parentId: 'marktodo-menu-item',
-    title: 'moderate',
+    title: '  moderate',
     contexts: ['link'],
-    type: 'radio',
-    checked: false,
   })
 
   browser.contextMenus.create({
     id: 'sub-menu-mild',
     parentId: 'marktodo-menu-item',
-    title: 'mild',
+    title: '  mild',
     contexts: ['link'],
-    type: 'radio',
-    checked: false,
   })
 })
 
