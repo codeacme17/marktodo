@@ -1,8 +1,7 @@
 import browser from 'webextension-polyfill'
 import { useEffect, useState } from 'react'
 import { TableDataItem } from '@/components/mark-table'
-
-type StorageKey = 'marktodo-data-list'
+import { StorageKey } from '@/lib/handle-storage'
 
 /**
  * A custom hook to manage a list of data stored in the browser's local storage.

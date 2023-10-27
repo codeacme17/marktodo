@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
-import { useStoragedDataList } from '@/lib/use-storaged-data-list'
+import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'

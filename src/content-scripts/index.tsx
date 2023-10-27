@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { injectToastAnimation, showToast } from '@/lib/handle-toast'
+import { injectToastAnimation, showToast } from './handle-toast'
 
 // Inject the toast animation
 injectToastAnimation()
@@ -9,7 +9,7 @@ let iconUrl: string = '' // The Tab icon url to be sent to the background script
 
 // Listen for context menu clicks,
 // get the link text and send it to the background script
-document.addEventListener('contextmenu', (event) => {
+document.addEventListener('contextmenu', async (event) => {
   if (!(event.target instanceof HTMLAnchorElement)) return
 
   const iconElement = document.querySelector(

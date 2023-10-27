@@ -1,4 +1,4 @@
-import { useStoragedDataList } from '@/lib/use-storaged-data-list'
+import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import {
   Table,

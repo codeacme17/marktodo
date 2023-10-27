@@ -1,13 +1,12 @@
 import browser from 'webextension-polyfill'
-import { TableDataItem, Priority } from '@/components/mark-table'
+import { TableDataItem } from '@/components/mark-table'
+import { generateSrcLabel } from '@/lib/utils'
 
-// Handle local storagre events
-export async function handleStorage(
-  response: any,
-  info: any,
-  tab: browser.Tabs.Tab,
-  priority: Priority
-) {
+export type StorageKey = 'marktodo-data-list'
+
+export const getStoragedDataList = async (): Promise<
+  TableDataItem[]
+> => {
   const storageResult = await browser.storage.local.get([
     'marktodo-data-list',
   ])
@@ -15,9 +14,18 @@ export async function handleStorage(
   const storagedDataList: TableDataItem[] =
     storageResult['marktodo-data-list'] || []
 
+  return storagedDataList
+}
+
+// Handle local storagre events
+export async function addDataToStrageList(
+  data: TableDataItem,
+  tab: browser.Tabs.Tab
+) {
+  const storagedDataList = await getStoragedDataList()
   // If the link is already in the list
   const isThere = storagedDataList.find(
-    (item) => item.src === info.linkUrl
+    (item) => item.src === data.src
   )
   if (isThere) {
     return await browser.tabs.sendMessage(tab.id!, {
@@ -29,11 +37,11 @@ export async function handleStorage(
 
   // Add the link to the list
   storagedDataList.push({
-    label: response.linkText,
-    src: info.linkUrl,
-    srcLabel: generateSrcLabel(info.linkUrl),
-    iconUrl: response.iconUrl,
-    priority: priority,
+    label: data.label,
+    src: data.src,
+    srcLabel: generateSrcLabel(data.src),
+    iconUrl: data.iconUrl,
+    priority: data.priority,
   })
 
   // Save the list to local storage
@@ -46,9 +54,4 @@ export async function handleStorage(
     message: 'Marked to to-do list',
     type: 'primary',
   })
-}
-
-function generateSrcLabel(urlString: string): string {
-  const url = new URL(urlString)
-  return url.hostname
 }

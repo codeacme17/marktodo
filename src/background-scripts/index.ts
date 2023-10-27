@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill'
-import { handleStorage } from './handle-storage'
+import { addDataToStrageList } from '@/lib/handle-storage'
+import { TableDataItem } from '@/components/mark-table'
 
 browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
@@ -49,31 +50,37 @@ browser.runtime.onInstalled.addListener(async () => {
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (!info.linkUrl || !tab || !tab.id) return
 
-  const contentScriptResponse = await browser.tabs.sendMessage(
-    tab.id,
-    {
-      action: 'get-link-info',
-    }
-  )
+  const response = await browser.tabs.sendMessage(tab.id, {
+    action: 'get-link-info',
+  })
 
-  if (!contentScriptResponse || !contentScriptResponse.linkText)
-    return
+  if (!response || !response.linkText) return
+
+  const data: TableDataItem = {
+    label: response.linkText,
+    src: info.linkUrl,
+    srcLabel: '',
+    iconUrl: response.iconUrl,
+    priority: 1,
+  }
 
   switch (info.menuItemId) {
     case 'sub-menu-critical':
-      await handleStorage(contentScriptResponse, info, tab, 3)
+      data.priority = 3
       break
 
     case 'sub-menu-moderate':
-      await handleStorage(contentScriptResponse, info, tab, 2)
+      data.priority = 2
       break
 
     case 'sub-menu-mild':
-      await handleStorage(contentScriptResponse, info, tab, 1)
+      data.priority = 1
       break
 
     default:
       console.warn('Unknown menu item clicked:', info.menuItemId)
       break
   }
+
+  await addDataToStrageList(data, tab)
 })
