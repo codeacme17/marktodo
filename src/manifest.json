@@ -23,8 +23,8 @@
     "default_popup": "src/popup.html"
   },
   "background": {
-    "{{chrome}}.service_worker": "src/background.ts",
-    "{{firefox}}.scripts": ["src/background.ts"]
+    "{{chrome}}.service_worker": "src/background-scripts/index.ts",
+    "{{firefox}}.scripts": ["src/background-scripts/index.ts"]
   },
   "content_scripts": [
     {

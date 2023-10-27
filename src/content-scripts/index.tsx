@@ -25,7 +25,7 @@ document.addEventListener('contextmenu', (event) => {
 
 // Listen for messages from the background script
 browser.runtime.onMessage.addListener(
-  (message, sender, sendResponse: any) => {
+  (message, _, sendResponse: any) => {
     if (message.action === 'get-link-info')
       responseGetLinkInfoAction(sendResponse)
 
