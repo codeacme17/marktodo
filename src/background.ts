@@ -1,39 +1,89 @@
 import browser from 'webextension-polyfill'
-import { TableDataItem } from '@/components/mark-table'
-
-console.log('background script loaded')
+import { TableDataItem, Priority } from '@/components/mark-table'
 
 browser.runtime.onInstalled.addListener(async () => {
-  // Create a context menu which will only show up for link.
   browser.contextMenus.create({
     id: 'marktodo-menu-item',
-    title: 'Mark to to-do list',
+    title: 'marktodo',
+    contexts: ['link'],
+  })
+
+  browser.contextMenus.create({
+    id: 'sub-menu-title',
+    parentId: 'marktodo-menu-item',
+    title: 'Choose a priority',
+    enabled: false,
+    contexts: ['link'],
+  })
+
+  browser.contextMenus.create({
+    id: 'sub-menu-separator',
+    parentId: 'marktodo-menu-item',
+    type: 'separator',
+    contexts: ['link'],
+  })
+
+  browser.contextMenus.create({
+    id: 'sub-menu-critical',
+    parentId: 'marktodo-menu-item',
+    title: 'critical ⭐️⭐️⭐️',
+    contexts: ['link'],
+  })
+
+  browser.contextMenus.create({
+    id: 'sub-menu-moderate',
+    parentId: 'marktodo-menu-item',
+    title: 'moderate ⭐️⭐️',
+    contexts: ['link'],
+  })
+
+  browser.contextMenus.create({
+    id: 'sub-menu-mild',
+    parentId: 'marktodo-menu-item',
+    title: 'mild ⭐️',
     contexts: ['link'],
   })
 })
 
 // Listen for clicks on the context menu item
 browser.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (
-    info.menuItemId !== 'marktodo-menu-item' ||
-    !info.linkUrl ||
-    !tab?.id
+  if (!info.linkUrl || !tab || !tab.id) return
+
+  const contentScriptResponse = await browser.tabs.sendMessage(
+    tab.id,
+    {
+      action: 'get-link-info',
+    }
   )
+
+  if (!contentScriptResponse || !contentScriptResponse.linkText)
     return
 
-  const response = await browser.tabs.sendMessage(tab.id, {
-    action: 'get-link-info',
-  })
+  switch (info.menuItemId) {
+    case 'sub-menu-critical':
+      await handleStorage(contentScriptResponse, info, tab, 3)
+      break
 
-  if (!response || !response.linkText) return
-  await handleStorage(response, info, tab)
+    case 'sub-menu-moderate':
+      await handleStorage(contentScriptResponse, info, tab, 2)
+      break
+
+    case 'sub-menu-mild':
+      await handleStorage(contentScriptResponse, info, tab, 1)
+      break
+
+    default:
+      console.warn('Unknown menu item clicked:', info.menuItemId)
+      break
+  }
 })
 
 // Handle local storagre events
 async function handleStorage(
   response: any,
   info: any,
-  tab: browser.Tabs.Tab
+  tab: browser.Tabs.Tab,
+  priority: Priority
 ) {
   const storageResult = await browser.storage.local.get([
     'marktodo-data-list',
@@ -60,6 +110,7 @@ async function handleStorage(
     src: info.linkUrl,
     srcLabel: generateSrcLabel(info.linkUrl),
     iconUrl: response.iconUrl,
+    priority: priority,
   })
 
   // Save the list to local storage

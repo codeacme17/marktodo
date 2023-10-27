@@ -1,6 +1,11 @@
 import { useStoragedDataList } from '@/lib/use-storaged-data-list'
 
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, XCircle } from 'lucide-react'
 
@@ -9,16 +14,23 @@ export type TableDataItem = {
   src: string
   srcLabel: string
   iconUrl: string
+  priority: Priority
   maskVisible?: boolean
 }
+
+export type Priority = 1 | 2 | 3
 
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const [storagedDataList, setStoragedDataList] =
-    useStoragedDataList('marktodo-data-list')
+  const [storagedDataList, setStoragedDataList] = useStoragedDataList(
+    'marktodo-data-list'
+  )
 
-  const handleMaskVisible = (item: TableDataItem, maskVisible: boolean) => {
+  const handleMaskVisible = (
+    item: TableDataItem,
+    maskVisible: boolean
+  ) => {
     setStoragedDataList(
       storagedDataList.map((dataItem) =>
         dataItem === item ? { ...item, maskVisible } : dataItem
@@ -26,7 +38,10 @@ export const MarkTable = () => {
     )
   }
 
-  const handleSelectLevel = async (item: TableDataItem, level: Level) => {
+  const handleSelectLevel = async (
+    item: TableDataItem,
+    level: Level
+  ) => {
     setStoragedDataList(
       storagedDataList.filter((dataItem) => dataItem.src !== item.src)
     )

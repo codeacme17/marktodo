@@ -1,8 +1,6 @@
 import browser from 'webextension-polyfill'
 import { injectToastAnimation, showToast } from '@/lib/handle-toast'
 
-console.log('content script loaded')
-
 // Inject the toast animation
 injectToastAnimation()
 
