@@ -4,12 +4,8 @@ import { generateSrcLabel } from '@/lib/utils'
 
 export type StorageKey = 'marktodo-data-list'
 
-export const getStoragedDataList = async (): Promise<
-  ListDataItem[]
-> => {
-  const storageResult = await browser.storage.local.get([
-    'marktodo-data-list',
-  ])
+export const getStoragedDataList = async (): Promise<ListDataItem[]> => {
+  const storageResult = await browser.storage.local.get(['marktodo-data-list'])
 
   const storagedDataList: ListDataItem[] =
     storageResult['marktodo-data-list'] || []
@@ -24,9 +20,7 @@ export async function addDataToStrageList(
 ) {
   const storagedDataList = await getStoragedDataList()
   // If the link is already in the list
-  const isThere = storagedDataList.find(
-    (item) => item.src === data.src
-  )
+  const isThere = storagedDataList.find((item) => item.src === data.src)
   if (isThere) {
     return await browser.tabs.sendMessage(tab.id!, {
       action: 'show-toast',
@@ -37,7 +31,7 @@ export async function addDataToStrageList(
 
   // Add the link to the list
   storagedDataList.push({
-    label: data.label,
+    label: decodeURIComponent(data.label),
     src: data.src,
     srcLabel: generateSrcLabel(data.src),
     iconUrl: data.iconUrl,
