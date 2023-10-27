@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
@@ -22,9 +22,8 @@ export const Navbar = () => {
   }
 
   const [sortType, setSort] = useState<SortType>('desc')
-  const [storagedDataList, setStoragedDataList] = useStoragedDataList(
-    'marktodo-data-list'
-  )
+  const [storagedDataList, setStoragedDataList] =
+    useStoragedDataList('marktodo-data-list')
   const troggleSort = () => {
     setSort(sortType === 'desc' ? 'asc' : 'desc')
     handleSort()
@@ -64,13 +63,14 @@ export const Navbar = () => {
             )}
           </Button>
 
+          {/* TODO
           <Button
             size="icon"
             variant="ghost"
             className="w-6 h-6 mr-2"
           >
             <Settings className="w-4 h-4" />
-          </Button>
+          </Button> */}
 
           <Button
             size="icon"

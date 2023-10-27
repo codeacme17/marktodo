@@ -1,6 +1,6 @@
 import { getStoragedDataList } from '@/lib/handle-storage'
 
-const innerSymbol = `<span id="_marktodo_symbol_"> 🔖</span>`
+const innerSymbol = `<span id="_marktodo_symbol_"> 🏷️</span>`
 
 export const renderLinkSymbolOnWeb = async () => {
   const storagedDataList = await getStoragedDataList()

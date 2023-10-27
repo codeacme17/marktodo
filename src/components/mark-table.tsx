@@ -1,11 +1,6 @@
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, CircleDot, XCircle } from 'lucide-react'
 
@@ -23,14 +18,10 @@ export type Priority = 1 | 2 | 3 // 1: mild, 2: moderate, 3: critical
 type Level = 'A' | 'B' | 'C' | 'Done'
 
 export const MarkTable = () => {
-  const [storagedDataList, setStoragedDataList] = useStoragedDataList(
-    'marktodo-data-list'
-  )
+  const [storagedDataList, setStoragedDataList] =
+    useStoragedDataList('marktodo-data-list')
 
-  const handleMaskVisible = (
-    item: ListDataItem,
-    maskVisible: boolean
-  ) => {
+  const handleMaskVisible = (item: ListDataItem, maskVisible: boolean) => {
     setStoragedDataList(
       storagedDataList.map((dataItem) =>
         dataItem === item ? { ...item, maskVisible } : dataItem
@@ -38,10 +29,7 @@ export const MarkTable = () => {
     )
   }
 
-  const handleSelectLevel = async (
-    item: ListDataItem,
-    level: Level
-  ) => {
+  const handleSelectLevel = async (item: ListDataItem, level: Level) => {
     setStoragedDataList(
       storagedDataList.filter((dataItem) => dataItem.src !== item.src)
     )
@@ -76,12 +64,13 @@ export const MarkTable = () => {
                   href={'https://' + item.srcLabel}
                   target="_blank"
                 >
+                  {/* TODO
                   <img
                     height="16"
                     width="16"
                     className="mr-2 grayscale"
                     src={item.iconUrl}
-                  />
+                  /> */}
                   <span className="flex-1">{item.srcLabel}</span>
                 </a>
               </TableCell>
@@ -107,6 +96,7 @@ export const MarkTable = () => {
                     onClick={() => handleMaskVisible(item, false)}
                   />
 
+                  {/* TODO 
                   <Button
                     className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
                     onClick={() => handleSelectLevel(item, 'A')}
@@ -124,9 +114,9 @@ export const MarkTable = () => {
                     onClick={() => handleSelectLevel(item, 'C')}
                   >
                     C
-                  </Button>
+                  </Button> */}
                   <Button
-                    className="w-12 h-8 "
+                    className="w-16 h-8"
                     onClick={() => handleSelectLevel(item, 'Done')}
                   >
                     Done
