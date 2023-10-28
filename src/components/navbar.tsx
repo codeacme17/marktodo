@@ -55,6 +55,7 @@ export const Navbar = () => {
             variant="ghost"
             className="w-6 h-6 mr-2"
             onClick={troggleSort}
+            disabled={storagedDataList.length === 0}
           >
             {sortType === 'desc' ? (
               <ArrowDownNarrowWide className="w-4 h-4" />
