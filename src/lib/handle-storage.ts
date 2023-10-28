@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 import { ListDataItem } from '@/components/mark-table'
 import { generateSrcLabel } from '@/lib/utils'
+import { ACTION } from '@/lib/constants'
 
 export type StorageKey = 'marktodo-data-list'
 
@@ -23,7 +24,7 @@ export async function addDataToStrageList(
   const isThere = storagedDataList.find((item) => item.src === data.src)
   if (isThere) {
     return await browser.tabs.sendMessage(tab.id!, {
-      action: 'show-toast',
+      action: ACTION.SHOW_TOAST,
       message: 'The link is already in the list.',
       type: 'error',
     })
@@ -44,11 +45,11 @@ export async function addDataToStrageList(
   })
 
   await browser.tabs.sendMessage(tab.id!, {
-    action: 'successed-add',
+    action: ACTION.SUCCESSED_ADD,
   })
 
   await browser.tabs.sendMessage(tab.id!, {
-    action: 'show-toast',
+    action: ACTION.SHOW_TOAST,
     message: 'Marked to to-do list',
     type: 'primary',
   })

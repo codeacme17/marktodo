@@ -9,7 +9,7 @@ type ToastType = 'primary' | 'error' | 'warning'
 export function showToast({
   message,
   type = 'primary',
-  duration = 2000,
+  duration = 3000,
 }: ToastOptions) {
   const toast = document.createElement('div')
 

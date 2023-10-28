@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
 import { addDataToStrageList } from '@/lib/handle-storage'
 import { ListDataItem } from '@/components/mark-table'
+import { ACTION } from '@/lib/constants'
 
 browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
@@ -51,7 +52,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   if (!info.linkUrl || !tab || !tab.id) return
 
   const response = await browser.tabs.sendMessage(tab.id, {
-    action: 'get-link-info',
+    action: ACTION.GET_LINK_INFO,
   })
 
   if (!response || !response.linkText) return
@@ -83,4 +84,11 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 
   await addDataToStrageList(data, tab)
+})
+
+browser.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
+  browser.tabs.sendMessage(details.tabId, {
+    action: ACTION.TAB_URL_UPDATE,
+    url: details.url,
+  })
 })

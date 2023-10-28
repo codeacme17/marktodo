@@ -1,6 +1,7 @@
 import browser from 'webextension-polyfill'
-import { injectToastAnimation, showToast } from '../lib/handle-toast'
-import { renderLinkSymbolOnWeb } from '../lib/handle-link-symbol'
+import { injectToastAnimation, showToast } from '@/lib/handle-toast'
+import { renderLinkSymbolOnWeb } from '@/lib/handle-link-symbol'
+import { ACTION } from '@/lib/constants'
 import { ListDataItem } from '@/components/mark-table'
 
 // Inject the toast animation
@@ -8,11 +9,46 @@ injectToastAnimation()
 // Render the symbol back to the marked links
 renderLinkSymbolOnWeb()
 
-let linkText: any = null // Link text to be sent to the background script
-let iconUrl: string = '' // The Tab icon url to be sent to the background script
+// Listen for messages from the background script
+browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
+  switch (message.action) {
+    case ACTION.GET_LINK_INFO:
+      handleLinkInfo(sendResponse)
+      break
+
+    case ACTION.SUCCESSED_ADD:
+      handleSuccessedAdd()
+      break
+
+    case ACTION.TAB_URL_UPDATE:
+      handleUrlUpdate()
+      break
+
+    case ACTION.SHOW_TOAST:
+      showToast({
+        message: message.message,
+        type: message.type,
+      })
+      break
+
+    default:
+      console.error('Unknown message received from background script')
+      break
+  }
+})
+
+browser.storage.local.onChanged.addListener(async (changes) => {
+  const oldValue: ListDataItem[] = changes['marktodo-data-list'].oldValue || []
+  const newValue: ListDataItem[] = changes['marktodo-data-list'].newValue
+
+  // Only render the symbol the list updated
+  if (oldValue.length !== newValue.length) renderLinkSymbolOnWeb()
+})
 
 // Listen for context menu clicks,
 // get the link text and send it to the background script
+let linkText: any = null
+let iconUrl: string = ''
 document.addEventListener('contextmenu', async (event) => {
   if (!(event.target instanceof HTMLAnchorElement)) return
 
@@ -22,37 +58,27 @@ document.addEventListener('contextmenu', async (event) => {
 
   if (iconElement && iconElement.href) iconUrl = iconElement.href
 
+  // To get the link text, we need to check if the link is an anchor,
+  // or a link with a hash
   if (event.target.hash === '') {
     linkText = event.target.textContent
   } else linkText = event.target.hash
 })
 
-// Listen for messages from the background script
-browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
-  if (message.action === 'get-link-info') responseLinkInfo(sendResponse)
-  if (message.action === 'successed-add') handleSuccessedAdd()
-  if (message.action === 'show-toast')
-    showToast({
-      message: message.message,
-      type: message.type,
-    })
-})
-
 // Send the link info to the background script
-function responseLinkInfo(sendResponse: any) {
+function handleLinkInfo(sendResponse: any) {
   sendResponse({ linkText, iconUrl })
   linkText = null
   iconUrl = ''
 }
 
-function handleSuccessedAdd() {
-  // Handle getted successed add message from the background script
+// Handle the tab url update
+function handleUrlUpdate() {
+  console.log('handleUrlUpdate')
+  renderLinkSymbolOnWeb()
 }
 
-browser.storage.local.onChanged.addListener(async (changes) => {
-  const oldValue: ListDataItem[] = changes['marktodo-data-list'].oldValue || []
-  const newValue: ListDataItem[] = changes['marktodo-data-list'].newValue
-
-  // Only render the symbol when the length of the list changes
-  if (oldValue.length !== newValue.length) renderLinkSymbolOnWeb()
-})
+// Handle getted successed add message from the background script
+function handleSuccessedAdd() {
+  // ...
+}
