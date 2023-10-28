@@ -8,6 +8,7 @@
     "96": "icon/96.png",
     "128": "icon/128.png"
   },
+  "default_locale": "en",
   "permissions": [
     "contextMenus",
     "storage",

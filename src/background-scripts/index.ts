@@ -13,7 +13,7 @@ browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
     id: 'sub-menu-title',
     parentId: 'marktodo-menu-item',
-    title: 'Choose a priority',
+    title: browser.i18n.getMessage('menu_title'),
     enabled: false,
     contexts: ['link'],
   })
@@ -28,21 +28,21 @@ browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
     id: 'sub-menu-critical',
     parentId: 'marktodo-menu-item',
-    title: '  critical',
+    title: '  ' + browser.i18n.getMessage('menu_critical'),
     contexts: ['link'],
   })
 
   browser.contextMenus.create({
     id: 'sub-menu-moderate',
     parentId: 'marktodo-menu-item',
-    title: '  moderate',
+    title: '  ' + browser.i18n.getMessage('menu_moderate'),
     contexts: ['link'],
   })
 
   browser.contextMenus.create({
     id: 'sub-menu-mild',
     parentId: 'marktodo-menu-item',
-    title: '  mild',
+    title: '  ' + browser.i18n.getMessage('menu_mild'),
     contexts: ['link'],
   })
 })

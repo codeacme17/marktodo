@@ -25,7 +25,7 @@ export async function addDataToStrageList(
   if (isThere) {
     return await browser.tabs.sendMessage(tab.id!, {
       action: ACTION.SHOW_TOAST,
-      message: 'The link is already in the list.',
+      message: browser.i18n.getMessage('hint_duplicated'),
       type: 'error',
     })
   }
@@ -46,7 +46,7 @@ export async function addDataToStrageList(
 
   await browser.tabs.sendMessage(tab.id!, {
     action: ACTION.SHOW_TOAST,
-    message: 'Marked to to-do list',
+    message: browser.i18n.getMessage('hint_marked'),
     type: 'primary',
   })
 }
