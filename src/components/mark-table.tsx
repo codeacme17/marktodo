@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
@@ -130,7 +131,7 @@ export const MarkTable = () => {
           {!storagedDataList.length && (
             <TableRow>
               <TableCell className="text-center text-primary/50 select-none">
-                There is currently no data available
+                {browser.i18n.getMessage('hint_empty_list')}
               </TableCell>
             </TableRow>
           )}

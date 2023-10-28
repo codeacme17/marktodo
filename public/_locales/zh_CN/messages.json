@@ -30,5 +30,9 @@
   "hint_duplicated": {
     "message": "已存在于待办列表",
     "description": "重复标记提示"
+  },
+  "hint_empty_list": {
+    "message": "暂无标记的待办事项",
+    "description": "空列表提示"
   }
 }

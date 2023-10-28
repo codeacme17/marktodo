@@ -30,5 +30,9 @@
   "hint_duplicated": {
     "message": "The link is already in the list",
     "description": "The link is already in the list hint"
+  },
+  "hint_empty_list": {
+    "message": "There is currently no data available",
+    "description": "The list is empty hint"
   }
 }
