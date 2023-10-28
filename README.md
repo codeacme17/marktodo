@@ -6,7 +6,17 @@
 
 <h1 align="center">Marktodo</h1>
 
+<p align="center">
 Browser extension allows customers to mark links/knowledge to to-do lists 🌐🔖
+  
+<!--
+<p align="center">
+  <img width="170" src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png"/>
+</p>
+
+-->
+</p>
+
 
 
 
