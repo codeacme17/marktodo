@@ -45,10 +45,6 @@ export async function addDataToStrageList(
   })
 
   await browser.tabs.sendMessage(tab.id!, {
-    action: ACTION.SUCCESSED_ADD,
-  })
-
-  await browser.tabs.sendMessage(tab.id!, {
     action: ACTION.SHOW_TOAST,
     message: 'Marked to to-do list',
     type: 'primary',

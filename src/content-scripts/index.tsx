@@ -6,8 +6,6 @@ import { ListDataItem } from '@/components/mark-table'
 
 // Inject the toast animation
 injectToastAnimation()
-// Render the symbol back to the marked links
-renderLinkSymbolOnWeb()
 
 // Listen for messages from the background script
 browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
@@ -67,7 +65,7 @@ function handleLinkInfo(sendResponse: any) {
 // Listen for changes in the DOM,
 // and re-render the symbol when the DOM changes for (SPA)
 let timeoutId: any
-const observer = new MutationObserver((mutations) => {
+const observer = new MutationObserver(() => {
   clearTimeout(timeoutId)
   timeoutId = setTimeout(() => {
     renderLinkSymbolOnWeb()
