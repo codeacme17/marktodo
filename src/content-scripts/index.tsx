@@ -16,14 +16,6 @@ browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
       handleLinkInfo(sendResponse)
       break
 
-    case ACTION.SUCCESSED_ADD:
-      handleSuccessedAdd()
-      break
-
-    case ACTION.TAB_URL_UPDATE:
-      handleUrlUpdate()
-      break
-
     case ACTION.SHOW_TOAST:
       showToast({
         message: message.message,
@@ -72,13 +64,18 @@ function handleLinkInfo(sendResponse: any) {
   iconUrl = ''
 }
 
-// Handle the tab url update
-function handleUrlUpdate() {
-  console.log('handleUrlUpdate')
-  renderLinkSymbolOnWeb()
-}
-
-// Handle getted successed add message from the background script
-function handleSuccessedAdd() {
-  // ...
-}
+// Listen for changes in the DOM,
+// and re-render the symbol when the DOM changes for (SPA)
+let timeoutId: any
+const observer = new MutationObserver((mutations) => {
+  clearTimeout(timeoutId)
+  timeoutId = setTimeout(() => {
+    renderLinkSymbolOnWeb()
+  }, 200)
+})
+observer.observe(document, {
+  childList: true,
+  subtree: true,
+  characterData: false,
+  attributes: false,
+})

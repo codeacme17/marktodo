@@ -85,10 +85,3 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
   await addDataToStrageList(data, tab)
 })
-
-browser.webNavigation.onHistoryStateUpdated.addListener(async (details) => {
-  browser.tabs.sendMessage(details.tabId, {
-    action: ACTION.TAB_URL_UPDATE,
-    url: details.url,
-  })
-})
