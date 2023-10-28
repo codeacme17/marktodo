@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
-import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import {
   Moon,
@@ -45,7 +44,6 @@ export const Navbar = () => {
     <nav className="fixed top-0 w-full p-3 pb-0 z-20 backdrop-blur-md">
       <div className="flex h-full justify-between items-center border-b pb-3 border-solid border-primary/10">
         <div className="flex items-center">
-          <Logo />
           <h2 className="ml-2 text-lg font-[Poppins]">marktodo</h2>
         </div>
 
