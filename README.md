@@ -1,6 +1,13 @@
-# Marktodo
+
+<p align="center">
+  <img align="center" width="210" src="/docs/logo.png"/>
+</p>
+
+<h1 align="center">Marktodo</h1>
 
 Browser extension allows customers to mark links/knowledge to to-do lists 🌐🔖
+
+
 
 ## Inspiration
 
