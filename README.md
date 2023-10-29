@@ -1,13 +1,13 @@
 <br />
 
 <p align="center">
-  <img align="center" width="170" src="/docs/logo.png"/>
+  <img align="center" width="110" src="/docs/logo.png"/>
 </p>
 
 <h1 align="center">Marktodo</h1>
 
 <p align="center">
-Browser extension allows customers to mark links/knowledge to to-do lists 🌐🔖
+Browser extension allows customers to mark link to to-do lists 🌐🔖
   
 <!--
 <p align="center">
