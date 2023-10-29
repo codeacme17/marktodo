@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { ListDataItem } from '@/components/mark-table'
-import { generateSrcLabel } from '@/lib/utils'
+import { generateSrcLabel, generateLabel } from '@/lib/utils'
 import { ACTION } from '@/lib/constants'
 
 export type StorageKey = 'marktodo-data-list'
@@ -32,7 +32,7 @@ export async function addDataToStrageList(
 
   // Add the link to the list
   storagedDataList.push({
-    label: decodeURIComponent(data.label),
+    label: generateLabel(data.label),
     src: data.src,
     srcLabel: generateSrcLabel(data.src),
     iconUrl: data.iconUrl,

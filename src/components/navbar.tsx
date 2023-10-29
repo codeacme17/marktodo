@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 import { addDataToStrageList } from '@/lib/handle-storage'
-import { ListDataItem } from '@/components/mark-table'
+import { ListDataItem, Priority } from '@/components/mark-table'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -17,13 +17,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import {
@@ -64,21 +57,23 @@ export const Navbar = () => {
     setStoragedDataList(temp)
   }
 
-  const handleMarkCurrentWeb = async () => {
+  const handleMarkCurrentWeb = async (priority: Priority) => {
     const tabInfo = (
       await browser.tabs.query({ active: true, currentWindow: true })
     )[0]
+
+    console.log(tabInfo)
 
     const data: ListDataItem = {
       label: tabInfo.title!,
       src: tabInfo.url!,
       srcLabel: tabInfo.url!,
-      iconUrl: tabInfo.favIconUrl! || '',
-      priority: 1,
+      iconUrl: tabInfo.favIconUrl || '',
+      priority: priority,
     }
 
     await addDataToStrageList(data, tabInfo)
-    window.close()
+    // window.close()
   }
 
   return (
@@ -98,7 +93,6 @@ export const Navbar = () => {
                       size="icon"
                       variant="ghost"
                       className="w-6 h-6 mr-2"
-                      onClick={handleMarkCurrentWeb}
                     >
                       <Plus className="w-4 h-4" />
                     </Button>
@@ -112,13 +106,13 @@ export const Navbar = () => {
 
             <DropdownMenuContent className="w-26">
               <DropdownMenuGroup>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleMarkCurrentWeb(3)}>
                   {browser.i18n.getMessage('menu_critical')}
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleMarkCurrentWeb(2)}>
                   {browser.i18n.getMessage('menu_moderate')}
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleMarkCurrentWeb(1)}>
                   {browser.i18n.getMessage('menu_mild')}
                 </DropdownMenuItem>
               </DropdownMenuGroup>
