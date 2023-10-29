@@ -1,0 +1,42 @@
+{
+  "extensionName": {
+    "message": "我的扩展",
+    "description": "扩展的名称。"
+  },
+  "welcomeMessage": {
+    "message": "欢迎使用我的扩展！",
+    "description": "欢迎消息。"
+  },
+  "menu_title": {
+    "message": "选择优先级",
+    "description": "选择优先级标题"
+  },
+  "menu_critical": {
+    "message": "紧急",
+    "description": "紧急优先级标签"
+  },
+  "menu_moderate": {
+    "message": "一般",
+    "description": "一般优先级标签"
+  },
+  "menu_mild": {
+    "message": "轻缓",
+    "description": "轻缓先级标签"
+  },
+  "hint_marked": {
+    "message": "已标记到待办列表",
+    "description": "标记成功提示"
+  },
+  "hint_duplicated": {
+    "message": "已存在于待办列表",
+    "description": "重复标记提示"
+  },
+  "hint_empty_list": {
+    "message": "暂无标记的待办事项",
+    "description": "空列表提示"
+  },
+  "hint_mark_current_web": {
+    "message": "标记当前的网站",
+    "description": "标记当前网站提示"
+  }
+}
