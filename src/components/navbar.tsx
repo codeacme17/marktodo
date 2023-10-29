@@ -1,14 +1,22 @@
+import browser from 'webextension-polyfill'
 import { useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Button } from '@/components/ui/button'
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import {
   Moon,
   Settings,
   Sun,
   ArrowDownNarrowWide,
   ArrowUpNarrowWide,
+  Plus,
 } from 'lucide-react'
 
 type SortType = 'desc' | 'asc'
@@ -48,6 +56,19 @@ export const Navbar = () => {
         </div>
 
         <div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button size="icon" variant="ghost" className="w-6 h-6 mr-2">
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{browser.i18n.getMessage('hint_mark_current_web')}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <Button
             size="icon"
             variant="ghost"

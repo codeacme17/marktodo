@@ -34,5 +34,9 @@
   "hint_empty_list": {
     "message": "There is currently no data available",
     "description": "The list is empty hint"
+  },
+  "hint_mark_current_web": {
+    "message": "Mark current web",
+    "description": "Mark current web hint"
   }
 }
