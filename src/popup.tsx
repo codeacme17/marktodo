@@ -8,9 +8,7 @@ const rootElement = document.getElementById('root')
 ReactDOM.createRoot(rootElement!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <main className="w-[420px] max-h-[500px]">
-        <Popup />
-      </main>
+      <Popup />
     </ThemeProvider>
   </React.StrictMode>
 )

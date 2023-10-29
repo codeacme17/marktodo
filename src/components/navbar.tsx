@@ -13,6 +13,20 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
   Moon,
   Settings,
   Sun,
@@ -75,23 +89,41 @@ export const Navbar = () => {
         </div>
 
         <div>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="w-6 h-6 mr-2"
-                  onClick={handleMarkCurrentWeb}
-                >
-                  <Plus className="w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{browser.i18n.getMessage('hint_mark_current_web')}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="w-6 h-6 mr-2"
+                      onClick={handleMarkCurrentWeb}
+                    >
+                      <Plus className="w-4 h-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{browser.i18n.getMessage('hint_mark_current_web')}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="w-26">
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  {browser.i18n.getMessage('menu_critical')}
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {browser.i18n.getMessage('menu_moderate')}
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {browser.i18n.getMessage('menu_mild')}
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Button
             size="icon"
