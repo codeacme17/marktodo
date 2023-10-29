@@ -1,6 +1,6 @@
 <br />
 
-<img align="right" width="140" src="/docs/logo.png"/>
+<img align="left" width="120" src="/docs/logo.png"/>
 
 <h1 >Marktodo</h1>
 
