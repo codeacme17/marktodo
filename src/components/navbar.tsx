@@ -33,27 +33,19 @@ type SortType = 'desc' | 'asc'
 export const Navbar = () => {
   const { theme, setTheme } = useTheme()
 
-  const troggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
   const [sortType, setSort] = useState<SortType>('desc')
+
   const [storagedDataList, setStoragedDataList] =
     useStoragedDataList('marktodo-data-list')
+
+  const troggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+
   const troggleSort = () => {
     setSort(sortType === 'desc' ? 'asc' : 'desc')
-    handleSort()
-  }
 
-  const handleSort = () => {
-    let temp = storagedDataList.slice()
-
-    if (sortType === 'desc') {
-      temp.sort((a, b) => a.priority - b.priority)
-    } else {
-      temp.sort((a, b) => b.priority - a.priority)
-    }
-
+    const temp = storagedDataList.slice()
+    if (sortType === 'desc') temp.sort((a, b) => a.priority - b.priority)
+    else temp.sort((a, b) => b.priority - a.priority)
     setStoragedDataList(temp)
   }
 
@@ -61,8 +53,6 @@ export const Navbar = () => {
     const tabInfo = (
       await browser.tabs.query({ active: true, currentWindow: true })
     )[0]
-
-    console.log(tabInfo)
 
     const data: ListDataItem = {
       label: tabInfo.title!,
@@ -73,7 +63,7 @@ export const Navbar = () => {
     }
 
     await addDataToStrageList(data, tabInfo)
-    // window.close()
+    window.close()
   }
 
   return (
@@ -104,7 +94,7 @@ export const Navbar = () => {
               </TooltipProvider>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-26">
+            <DropdownMenuContent>
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => handleMarkCurrentWeb(3)}>
                   {browser.i18n.getMessage('menu_critical')}
