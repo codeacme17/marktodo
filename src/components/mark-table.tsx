@@ -3,7 +3,7 @@ import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, CircleDot, XCircle } from 'lucide-react'
+import { CheckCircle, CircleDot, XCircle, TableIcon } from 'lucide-react'
 
 export type ListDataItem = {
   label: string
@@ -130,8 +130,9 @@ export const MarkTable = () => {
           {/* Empty Hint */}
           {!storagedDataList.length && (
             <TableRow>
-              <TableCell className="text-center text-primary/50 select-none">
-                {browser.i18n.getMessage('hint_empty_list')}
+              <TableCell className="text-center text-primary/50 select-none flex flex-col items-center justify-center h-40">
+                <TableIcon className="w-6 h-6 mb-4" />
+                <p>{browser.i18n.getMessage('hint_empty_list')}</p>
               </TableCell>
             </TableRow>
           )}

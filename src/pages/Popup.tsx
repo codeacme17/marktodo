@@ -3,7 +3,7 @@ import { MarkTable } from '@/components/mark-table'
 
 export default function () {
   return (
-    <main className="w-[420px] max-h-[500px] min-h-[200px] flex flex-col">
+    <main className="w-[420px] max-h-[500px] min-h-[220px] flex flex-col">
       <Navbar />
       <MarkTable />
     </main>
