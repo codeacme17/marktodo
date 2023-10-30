@@ -4,7 +4,7 @@
 
 <h1 >Marktodo</h1>
 
-Browser extension allows customers to mark link or web to to-do lists 🌐🔖
+Browser extension allows customers to mark link or web to to-do lists 🌐🏷️
 
 <br />
 
