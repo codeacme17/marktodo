@@ -1,10 +1,14 @@
 <br />
 
-<img align="left" width="120" src="/docs/logo.png"/>
+<img align="left" width="140" src="/docs/logo.png"/>
 
 <h1 >Marktodo</h1>
 
 Browser extension allows customers to mark link or web to to-do lists 🌐🏷️
+
+![Static Badge](https://img.shields.io/badge/中文文档-%23242D3E?style=flat&labelColor=%23242D3E&logo=microsofttranslator)
+![Static Badge](https://img.shields.io/badge/License-MIT-%23242D3E?style=flat&labelColor=%23242D3E)
+
 
 <br />
 
