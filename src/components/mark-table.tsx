@@ -25,14 +25,14 @@ export const MarkTable = () => {
   const handleMaskVisible = (item: ListDataItem, maskVisible: boolean) => {
     setStoragedDataList(
       storagedDataList.map((dataItem) =>
-        dataItem === item ? { ...item, maskVisible } : dataItem
-      )
+        dataItem === item ? { ...item, maskVisible } : dataItem,
+      ),
     )
   }
 
   const handleSelectLevel = async (item: ListDataItem, level: Level) => {
     setStoragedDataList(
-      storagedDataList.filter((dataItem) => dataItem.src !== item.src)
+      storagedDataList.filter((dataItem) => dataItem.src !== item.src),
     )
   }
 
@@ -47,7 +47,7 @@ export const MarkTable = () => {
                   className="decoration-1 flex items-center underline-offset-4 font-medium hover:underline"
                   href={item.src}
                   target="_blank"
-                >
+                  rel="noreferrer">
                   {item.priority === 3 && (
                     <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-red-500 stroke-current" />
                   )}
@@ -64,7 +64,7 @@ export const MarkTable = () => {
                   className="text-muted-foreground decoration-1 underline-offset-4 hover:underline text-xs flex items-center mt-1 ml-6"
                   href={'https://' + item.srcLabel}
                   target="_blank"
-                >
+                  rel="noreferrer">
                   {/* TODO
                   <img
                     height="16"
@@ -81,8 +81,7 @@ export const MarkTable = () => {
                   size="icon"
                   variant="outline"
                   className="w-8 h-8"
-                  onClick={() => handleMaskVisible(item, true)}
-                >
+                  onClick={() => handleMaskVisible(item, true)}>
                   <CheckCircle
                     className="w-4 h-4 stroke-green-500"
                     strokeWidth="3px"
@@ -118,8 +117,7 @@ export const MarkTable = () => {
                   </Button> */}
                   <Button
                     className="w-16 h-8"
-                    onClick={() => handleSelectLevel(item, 'Done')}
-                  >
+                    onClick={() => handleSelectLevel(item, 'Done')}>
                     Done
                   </Button>
                 </div>

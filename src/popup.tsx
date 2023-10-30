@@ -10,5 +10,5 @@ ReactDOM.createRoot(rootElement!).render(
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Popup />
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 )

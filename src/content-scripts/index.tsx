@@ -8,7 +8,7 @@ import { ListDataItem } from '@/components/mark-table'
 injectToastAnimation()
 
 // Listen for messages from the background script
-browser.runtime.onMessage.addListener((message, _, sendResponse: any) => {
+browser.runtime.onMessage.addListener((message, _, sendResponse) => {
   switch (message.action) {
     case ACTION.GET_LINK_INFO:
       handleLinkInfo(sendResponse)
@@ -43,7 +43,7 @@ document.addEventListener('contextmenu', async (event) => {
   if (!(event.target instanceof HTMLAnchorElement)) return
 
   const iconElement = document.querySelector(
-    'link[rel="icon"], link[rel="shortcut icon"]'
+    'link[rel="icon"], link[rel="shortcut icon"]',
   ) as HTMLLinkElement
 
   if (iconElement && iconElement.href) iconUrl = iconElement.href
@@ -64,7 +64,7 @@ function handleLinkInfo(sendResponse: any) {
 
 // Listen for changes in the DOM,
 // and re-render the symbol when the DOM changes for (SPA)
-let timeoutId: any
+let timeoutId: NodeJS.Timeout
 const observer = new MutationObserver(() => {
   clearTimeout(timeoutId)
   timeoutId = setTimeout(() => {

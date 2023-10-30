@@ -82,8 +82,7 @@ export const Navbar = () => {
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="w-6 h-6 mr-2"
-                    >
+                      className="w-6 h-6 mr-2">
                       <Plus className="w-4 h-4" />
                     </Button>
                   </TooltipTrigger>
@@ -114,8 +113,7 @@ export const Navbar = () => {
             variant="ghost"
             className="w-6 h-6 mr-2"
             onClick={troggleSort}
-            disabled={storagedDataList.length <= 1}
-          >
+            disabled={storagedDataList.length <= 1}>
             {sortType === 'desc' ? (
               <ArrowDownNarrowWide className="w-4 h-4" />
             ) : (
@@ -136,8 +134,7 @@ export const Navbar = () => {
             size="icon"
             variant="ghost"
             onClick={troggleTheme}
-            className="w-6 h-6"
-          >
+            className="w-6 h-6">
             {theme === 'dark' ? (
               <Sun className="w-4 h-4" />
             ) : (

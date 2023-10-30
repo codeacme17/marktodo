@@ -17,7 +17,7 @@ export const getStoragedDataList = async (): Promise<ListDataItem[]> => {
 // Handle local storagre events
 export async function addDataToStrageList(
   data: ListDataItem,
-  tab: browser.Tabs.Tab
+  tab: browser.Tabs.Tab,
 ) {
   const storagedDataList = await getStoragedDataList()
   // If the link is already in the list

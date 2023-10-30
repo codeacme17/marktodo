@@ -17,11 +17,9 @@ import { StorageKey } from '@/lib/handle-storage'
  * const [storagedDataList, updateStoragedDataList] = useStoragedDataList('my-storage-key');
  */
 export const useStoragedDataList = (
-  storageKey: StorageKey
+  storageKey: StorageKey,
 ): [ListDataItem[], (data: ListDataItem[]) => void] => {
-  const [storagedDataList, setStoragedDataList] = useState<
-    ListDataItem[]
-  >([])
+  const [storagedDataList, setStoragedDataList] = useState<ListDataItem[]>([])
 
   browser.storage.local.onChanged.addListener((changes) => {
     setStoragedDataList(changes[storageKey].newValue)
@@ -33,17 +31,14 @@ export const useStoragedDataList = (
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      const storageData = await browser.storage.local.get([
-        storageKey,
-      ])
+      const storageData = await browser.storage.local.get([storageKey])
       const storagedDataList = storageData[storageKey] || []
 
       // Sort the data list by priority in descending order
       setStoragedDataList(
         storagedDataList.sort(
-          (a: ListDataItem, b: ListDataItem) =>
-            b.priority - a.priority
-        )
+          (a: ListDataItem, b: ListDataItem) => b.priority - a.priority,
+        ),
       )
     }
 
