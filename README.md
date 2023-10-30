@@ -6,8 +6,13 @@
 
 Browser extension allows customers to mark link or web to to-do lists 🌐🏷️
 
-![Static Badge](https://img.shields.io/badge/中文文档-%23242D3E?style=flat&labelColor=%23242D3E&logo=microsofttranslator)
-![Static Badge](https://img.shields.io/badge/License-MIT-%23242D3E?style=flat&labelColor=%23242D3E)
+<p>  
+<a href="/docs/zh-doc.md"> 
+  <img src="https://img.shields.io/badge/中文文档-%23242D3E?style=flat&labelColor=%23242D3E&logo=microsofttranslator" />
+</a>
+
+<img src="https://img.shields.io/badge/License-MIT-%23242D3E?style=flat&labelColor=%23242D3E" />
+</p>
 
 ## Inspiration
 
