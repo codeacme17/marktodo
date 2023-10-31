@@ -10,9 +10,11 @@
 
 ## 下载
 <p>
-  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/88af461e-d2ac-4e4b-b4c7-83287e037865"/>
-  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/1ba4db4d-82ff-4698-8dde-e66a9fa7ea52"/>
-  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/4a1574b4-b13d-46e0-9c89-ea576d48c191"/>
+  <a href="https://addons.mozilla.org/firefox/addon/marktodo/">
+    <img height="60" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg">
+  </a>
+  <img height="60" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png"/>
+  <img height="60" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Get_it_from_Microsoft_Badge.svg/320px-Get_it_from_Microsoft_Badge.svg.png"/>
 </p>
 
 
