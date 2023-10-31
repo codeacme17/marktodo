@@ -24,8 +24,8 @@ export function showToast({
   toast.style.padding = '10px 20px'
   toast.style.borderRadius = '5px'
   toast.style.zIndex = '1000'
-  toast.style.fontFamily = 'JetBrains Mono, monospace'
-  toast.style.fontSize = '14px'
+  toast.style.fontFamily = 'JetBrains Mono, 微软雅黑 light, youyuan'
+  toast.style.fontSize = '13px'
   toast.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)'
 
   toast.innerText = message
