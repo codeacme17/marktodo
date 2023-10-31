@@ -1,11 +1,7 @@
 {
-  "extensionName": {
-    "message": "My Extension",
-    "description": "The name of the extension."
-  },
-  "welcomeMessage": {
-    "message": "Welcome to My Extension!",
-    "description": "The welcome message."
+  "extension_name": {
+    "message": "Marktodo | Mark Web, Make Todo",
+    "description": "The name of the extension"
   },
   "menu_title": {
     "message": "Choose a priority",

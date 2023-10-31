@@ -1,11 +1,7 @@
 {
-  "extensionName": {
-    "message": "我的扩展",
-    "description": "扩展的名称。"
-  },
-  "welcomeMessage": {
-    "message": "欢迎使用我的扩展！",
-    "description": "欢迎消息。"
+  "extension_name": {
+    "message": "Marktodo | Mark Web, Make Todo",
+    "description": "扩展的名称"
   },
   "menu_title": {
     "message": "选择优先级",

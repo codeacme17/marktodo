@@ -8,7 +8,7 @@ function generateManifest() {
   const manifest = readJsonFile('src/manifest.json')
   const pkg = readJsonFile('package.json')
   return {
-    name: pkg.name,
+    name: 'Marktodo',
     auther: pkg.author,
     description: pkg.description,
     version: pkg.version,
@@ -28,7 +28,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '/@react-refresh': path.resolve(
-        'node_modules/@vitejs/plugin-react-swc/refresh-runtime.js'
+        'node_modules/@vitejs/plugin-react-swc/refresh-runtime.js',
       ),
       '@': path.resolve(__dirname, './src'),
     },

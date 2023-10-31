@@ -6,7 +6,7 @@ import { ACTION } from '@/lib/constants'
 browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
     id: 'marktodo-menu-item',
-    title: 'marktodo',
+    title: browser.i18n.getMessage('extension_name'),
     contexts: ['link'],
   })
 
