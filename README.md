@@ -18,14 +18,16 @@ When I browse through technical documentation or do exercises on websites, I com
 
 Therefore, the purpose of Marktodo is to allow you to mark these important pieces of content and remind yourself to review them after a certain period of time.
 
+## Download
+<p>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/88af461e-d2ac-4e4b-b4c7-83287e037865"/>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/1ba4db4d-82ff-4698-8dde-e66a9fa7ea52"/>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/4a1574b4-b13d-46e0-9c89-ea576d48c191"/>
+</p>
 
 ## Demo
 
 https://github.com/codeacme17/marktodo/assets/67408722/8edf1827-3130-44e4-8ac6-430539156527
 
-<!--
-<p align="center">
-  <img width="170" src="https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png"/>
-</p>
--->
+
 
