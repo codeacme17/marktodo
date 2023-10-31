@@ -4,11 +4,17 @@
 
 浏览器扩展程序，允许用户将链接或网页标记到待办事项列表中 🌐🏷️
 
-<br />
-
-## 灵感
+## 动机
 
 当我浏览技术文档或在网站上做练习时，我会遇到一些我想记住的重要内容。但是，几天后，我可能会忘记这些内容，并且忽略了提醒自己复习它们。例如，在Leetcode上解决问题时，我经常想在完成后的第二天提醒自己再次解决问题，但很有可能我会忘记做这件事 😢。因此，Marktodo的目的是让你标记这些重要的内容，并提醒自己复习它们。
+
+## 下载
+<p>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/88af461e-d2ac-4e4b-b4c7-83287e037865"/>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/1ba4db4d-82ff-4698-8dde-e66a9fa7ea52"/>
+  <img height="60" src="https://github.com/codeacme17/marktodo/assets/67408722/4a1574b4-b13d-46e0-9c89-ea576d48c191"/>
+</p>
+
 
 ## 演示
 
