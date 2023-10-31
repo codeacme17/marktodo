@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import Unfonts from 'unplugin-fonts/vite'
 import webExtension, { readJsonFile } from 'vite-plugin-web-extension'
 import path from 'node:path'
 
@@ -16,14 +15,24 @@ function generateManifest() {
   }
 }
 
+function switchOutDir() {
+  if (process.env.TARGET === 'firefox') return './firefox-dist'
+  else return './dist'
+}
+
 export default defineConfig({
   plugins: [
     react(),
 
     webExtension({
       manifest: generateManifest,
+      browser: process.env.TARGET || 'chrome',
     }),
   ],
+
+  build: {
+    outDir: switchOutDir(),
+  },
 
   resolve: {
     alias: {
