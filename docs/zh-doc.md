@@ -1,8 +1,6 @@
-<br />
+<img src="/docs/social.png"/>
 
-<img align="left" width="140" src="/docs/logo.png"/>
-
-<h1 >Marktodo</h1>
+<h1>Marktodo</h1>
 
 浏览器扩展程序，允许用户将链接或网页标记到待办事项列表中 🌐🏷️
 
