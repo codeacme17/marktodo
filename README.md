@@ -1,5 +1,3 @@
-<br />
-
 <img src="/docs/social.png"/>
 
 <h1 >Marktodo</h1>
