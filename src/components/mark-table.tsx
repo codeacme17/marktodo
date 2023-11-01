@@ -1,10 +1,10 @@
 import browser from 'webextension-polyfill'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, CircleDot, XCircle, TableIcon } from 'lucide-react'
+import { CheckCircle, XCircle, TableIcon } from 'lucide-react'
 
 export type ListDataItem = {
   label: string
