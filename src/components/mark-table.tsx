@@ -53,17 +53,17 @@ const PrioritySwitchButton = ({
   return (
     <Button
       size="icon"
-      className="w-4 h-4 mr-2"
-      variant="ghost"
+      className="w-5 h-5 flex justify-center items-center mr-2"
+      variant="outline"
       onClick={changePriority}>
       {priority === 3 && (
-        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-red-500 stroke-current cursor-pointer" />
+        <span className="w-2 h-2 rounded-full transition-colors bg-red-600 dark:bg-red-400" />
       )}
       {priority === 2 && (
-        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-orange-500 stroke-current" />
+        <span className="w-2 h-2 rounded-full transition-colors bg-amber-600 dark:bg-amber-400" />
       )}
       {priority === 1 && (
-        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-green-500 stroke-current" />
+        <span className="w-2 h-2 rounded-full transition-colors bg-green-600 dark:bg-green-400" />
       )}
     </Button>
   )
@@ -102,7 +102,7 @@ export const MarkTable = () => {
         <TableBody>
           {storagedDataList.map((item) => (
             <TableRow className="relative" key={item.src}>
-              <TableCell className="font-medium">
+              <TableCell className="font-medium pl-2">
                 <div className="flex">
                   <PrioritySwitchButton
                     item={item}
@@ -119,7 +119,7 @@ export const MarkTable = () => {
                 </div>
 
                 <a
-                  className="text-muted-foreground decoration-1 underline-offset-4 hover:underline text-xs flex items-center mt-1 ml-6"
+                  className="text-muted-foreground decoration-1 underline-offset-4 hover:underline text-xs flex items-center mt-1 ml-7"
                   href={'https://' + item.srcLabel}
                   target="_blank"
                   rel="noreferrer">
