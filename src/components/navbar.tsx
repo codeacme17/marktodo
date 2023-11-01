@@ -21,6 +21,7 @@ import {
 import {
   Moon,
   Sun,
+  Github,
   ArrowDownNarrowWide,
   ArrowUpNarrowWide,
   Plus,
@@ -70,23 +71,15 @@ export const Navbar = () => {
         <div className="flex items-center">
           <h2 className="ml-2 text-lg font-[Poppins] select-none">Marktodo</h2>
 
-          <a
-            className="ml-2 cursor-pointer"
+          <Button
+            size="icon"
+            variant="ghost"
+            className="w-6 h-6 ml-2"
             onClick={() =>
               window.open('https://github.com/codeacme17/marktodo', '_blank')
             }>
-            {theme === 'dark' ? (
-              <img
-                alt="GitHub Repo stars"
-                src="https://img.shields.io/github/stars/codeacme17/marktodo?style=flat&logo=github&labelColor=242d3e&color=242d3e"
-              />
-            ) : (
-              <img
-                alt="GitHub Repo stars"
-                src="https://img.shields.io/github/stars/codeacme17/marktodo?logo=github&logoColor=1E1E1E&labelColor=e4e6eb&color=b0b7c4"
-              />
-            )}
-          </a>
+            <Github className="w-4 h-4 stroke-primary/40" />
+          </Button>
         </div>
 
         <div>
