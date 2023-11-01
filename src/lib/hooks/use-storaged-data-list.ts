@@ -22,7 +22,6 @@ export const useStoragedDataList = (
   const [storagedDataList, setStoragedDataList] = useState<ListDataItem[]>([])
 
   browser.storage.local.onChanged.addListener((changes) => {
-    console.log('changes', changes)
     setStoragedDataList(changes[storageKey].newValue)
   })
 
