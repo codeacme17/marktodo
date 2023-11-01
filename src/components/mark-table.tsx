@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { useEffect, useState } from 'react'
 import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
@@ -18,6 +19,56 @@ export type Priority = 1 | 2 | 3 // 1: mild, 2: moderate, 3: critical
 
 type Level = 'A' | 'B' | 'C' | 'Done'
 
+interface PrioritySwitchButtonProps {
+  item: ListDataItem
+  getPrioirty: (item: ListDataItem, priority: Priority) => void
+}
+
+const PrioritySwitchButton = ({
+  item,
+  getPrioirty,
+}: PrioritySwitchButtonProps) => {
+  const [priority, setPriority] = useState<Priority>(item.priority)
+  const [isDown, setIsDown] = useState<boolean>(true) // [true: down, false: up]
+
+  const changePriority = () => {
+    setPriority((prev: Priority) => {
+      if (prev === 3) {
+        prev -= 1
+        setIsDown(true)
+      } else if (prev === 2 && isDown) {
+        prev -= 1
+      } else if (prev === 2 && !isDown) {
+        prev += 1
+      } else if (prev === 1) {
+        prev += 1
+        setIsDown(false)
+      }
+
+      getPrioirty(item, prev as Priority)
+      return prev as Priority
+    })
+  }
+
+  return (
+    <Button
+      size="icon"
+      className="w-4 h-4 mr-2"
+      variant="ghost"
+      onClick={changePriority}>
+      {priority === 3 && (
+        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-red-500 stroke-current cursor-pointer" />
+      )}
+      {priority === 2 && (
+        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-orange-500 stroke-current" />
+      )}
+      {priority === 1 && (
+        <CircleDot className="w-4 h-4 mb-auto mt-0.5 fill-green-500 stroke-current" />
+      )}
+    </Button>
+  )
+}
+
 export const MarkTable = () => {
   const [storagedDataList, setStoragedDataList] =
     useStoragedDataList('marktodo-data-list')
@@ -36,6 +87,15 @@ export const MarkTable = () => {
     )
   }
 
+  const handleSwitchPriority = (item: ListDataItem, priority: Priority) => {
+    setStoragedDataList(
+      storagedDataList.map((dataItem) => {
+        if (dataItem.src !== item.src) return dataItem
+        return { ...item, priority }
+      }),
+    )
+  }
+
   return (
     <section className="pt-14 pb-3 px-3 flex-1">
       <Table>
@@ -43,22 +103,20 @@ export const MarkTable = () => {
           {storagedDataList.map((item) => (
             <TableRow className="relative" key={item.src}>
               <TableCell className="font-medium">
-                <a
-                  className="decoration-1 flex items-center underline-offset-4 font-medium hover:underline"
-                  href={item.src}
-                  target="_blank"
-                  rel="noreferrer">
-                  {item.priority === 3 && (
-                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-red-500 stroke-current" />
-                  )}
-                  {item.priority === 2 && (
-                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-orange-500 stroke-current" />
-                  )}
-                  {item.priority === 1 && (
-                    <CircleDot className="w-4 h-4 mr-2 mb-auto mt-0.5 fill-green-500 stroke-current" />
-                  )}
-                  <span className="flex-1">{item.label}</span>
-                </a>
+                <div className="flex">
+                  <PrioritySwitchButton
+                    item={item}
+                    getPrioirty={handleSwitchPriority}
+                  />
+
+                  <a
+                    className="decoration-1 flex-1 items-center underline-offset-4 font-medium hover:underline"
+                    href={item.src}
+                    target="_blank"
+                    rel="noreferrer">
+                    {item.label}
+                  </a>
+                </div>
 
                 <a
                   className="text-muted-foreground decoration-1 underline-offset-4 hover:underline text-xs flex items-center mt-1 ml-6"
