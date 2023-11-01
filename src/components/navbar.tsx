@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
-import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
+import { useStoragedDataList, useStorage } from '@/lib/hooks'
 import { addDataToStrageList } from '@/lib/handle-storage'
 import { ListDataItem, Priority } from '@/components/mark-table'
 
@@ -32,21 +32,23 @@ type SortType = 'desc' | 'asc'
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme()
-
-  const [sortType, setSort] = useState<SortType>('desc')
-
+  const [sortType, setSort] = useStorage<SortType>('marktodo-sort-type', 'desc')
   const [storagedDataList, setStoragedDataList] =
     useStoragedDataList('marktodo-data-list')
 
   const troggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
-  const troggleSort = () => {
-    setSort(sortType === 'desc' ? 'asc' : 'desc')
-
+  const sortDataList = (type: SortType) => {
     const temp = storagedDataList.slice()
-    if (sortType === 'desc') temp.sort((a, b) => a.priority - b.priority)
-    else temp.sort((a, b) => b.priority - a.priority)
+    if (type === 'desc') temp.sort((a, b) => b.priority - a.priority)
+    else temp.sort((a, b) => a.priority - b.priority)
     setStoragedDataList(temp)
+  }
+
+  const troggleSort = () => {
+    const newSortType = sortType === 'desc' ? 'asc' : 'desc'
+    setSort(newSortType)
+    sortDataList(newSortType)
   }
 
   const handleMarkCurrentWeb = async (priority: Priority) => {

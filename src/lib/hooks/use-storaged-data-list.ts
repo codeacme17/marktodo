@@ -22,6 +22,7 @@ export const useStoragedDataList = (
   const [storagedDataList, setStoragedDataList] = useState<ListDataItem[]>([])
 
   browser.storage.local.onChanged.addListener((changes) => {
+    console.log('changes', changes)
     setStoragedDataList(changes[storageKey].newValue)
   })
 
@@ -34,12 +35,7 @@ export const useStoragedDataList = (
       const storageData = await browser.storage.local.get([storageKey])
       const storagedDataList = storageData[storageKey] || []
 
-      // Sort the data list by priority in descending order
-      setStoragedDataList(
-        storagedDataList.sort(
-          (a: ListDataItem, b: ListDataItem) => b.priority - a.priority,
-        ),
-      )
+      setStoragedDataList(storagedDataList)
     }
 
     fetchInitialData()
