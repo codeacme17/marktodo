@@ -1,7 +1,7 @@
 import browser from 'webextension-polyfill'
 import { useEffect, useState } from 'react'
-import { ListDataItem } from '@/components/mark-table'
 import { StorageKey } from '@/lib/handle-storage'
+import { ListDataItem } from '@/lib/types'
 
 /**
  * A custom hook to manage a list of data stored in the browser's local storage.

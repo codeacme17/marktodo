@@ -1,10 +1,4 @@
-interface ToastOptions {
-  message: string
-  type?: ToastType
-  duration?: number
-}
-
-type ToastType = 'primary' | 'error' | 'warning'
+import { ToastOptions, ToastType } from '@/lib/types'
 
 export function showToast({
   message,

@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill'
 import { injectToastAnimation, showToast } from '@/lib/handle-toast'
 import { renderLinkSymbolOnWeb } from '@/lib/handle-link-symbol'
 import { ACTION } from '@/lib/constants'
-import { ListDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/lib/types'
 
 // Inject the toast animation
 injectToastAnimation()

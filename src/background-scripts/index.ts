@@ -1,6 +1,6 @@
 import browser from 'webextension-polyfill'
 import { addDataToStrageList } from '@/lib/handle-storage'
-import { ListDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/lib/types'
 import { ACTION } from '@/lib/constants'
 
 browser.runtime.onInstalled.addListener(async () => {

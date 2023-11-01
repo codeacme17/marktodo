@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill'
-import { ListDataItem } from '@/components/mark-table'
+import { ListDataItem } from '@/lib/types'
 import { generateSrcLabel, generateLabel } from '@/lib/utils'
 import { ACTION } from '@/lib/constants'
 

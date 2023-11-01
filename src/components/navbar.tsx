@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList, useStorage } from '@/lib/hooks'
 import { addDataToStrageList } from '@/lib/handle-storage'
-import { ListDataItem, Priority } from '@/components/mark-table'
+import { ListDataItem, Priority, SortType } from '@/lib/types'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -20,14 +20,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import {
   Moon,
-  Settings,
   Sun,
   ArrowDownNarrowWide,
   ArrowUpNarrowWide,
   Plus,
 } from 'lucide-react'
-
-type SortType = 'desc' | 'asc'
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme()
@@ -139,15 +136,6 @@ export const Navbar = () => {
               <ArrowUpNarrowWide className="w-4 h-4" />
             )}
           </Button>
-
-          {/* TODO
-          <Button
-            size="icon"
-            variant="ghost"
-            className="w-6 h-6 mr-2"
-          >
-            <Settings className="w-4 h-4" />
-          </Button> */}
 
           <Button
             size="icon"

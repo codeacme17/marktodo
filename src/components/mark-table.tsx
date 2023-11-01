@@ -1,23 +1,11 @@
 import browser from 'webextension-polyfill'
 import { useState } from 'react'
-import { useStoragedDataList } from '@/lib/hooks/use-storaged-data-list'
+import { useStoragedDataList } from '@/lib/hooks'
+import { ListDataItem, Priority, Level } from '@/lib/types'
 
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, XCircle, TableIcon } from 'lucide-react'
-
-export type ListDataItem = {
-  label: string
-  src: string
-  srcLabel: string
-  iconUrl: string
-  priority: Priority
-  maskVisible?: boolean
-}
-
-export type Priority = 1 | 2 | 3 // 1: mild, 2: moderate, 3: critical
-
-type Level = 'A' | 'B' | 'C' | 'Done'
 
 interface PrioritySwitchButtonProps {
   item: ListDataItem
@@ -123,13 +111,6 @@ export const MarkTable = () => {
                   href={'https://' + item.srcLabel}
                   target="_blank"
                   rel="noreferrer">
-                  {/* TODO
-                  <img
-                    height="16"
-                    width="16"
-                    className="mr-2 grayscale"
-                    src={item.iconUrl}
-                  /> */}
                   <span className="flex-1">{item.srcLabel}</span>
                 </a>
               </TableCell>
@@ -154,25 +135,6 @@ export const MarkTable = () => {
                     onClick={() => handleMaskVisible(item, false)}
                   />
 
-                  {/* TODO 
-                  <Button
-                    className="w-8 h-8 mr-2 bg-emerald-600 dark:bg-emerald-400 font-black"
-                    onClick={() => handleSelectLevel(item, 'A')}
-                  >
-                    A
-                  </Button>
-                  <Button
-                    className="w-8 h-8 mr-2  bg-amber-600 dark:bg-amber-400 font-black"
-                    onClick={() => handleSelectLevel(item, 'B')}
-                  >
-                    B
-                  </Button>
-                  <Button
-                    className="w-8 h-8 mr-2 bg-rose-600 dark:bg-rose-400 font-black"
-                    onClick={() => handleSelectLevel(item, 'C')}
-                  >
-                    C
-                  </Button> */}
                   <Button
                     className="w-16 h-8"
                     onClick={() => handleSelectLevel(item, 'Done')}>
