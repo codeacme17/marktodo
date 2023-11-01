@@ -1,5 +1,4 @@
 import browser from 'webextension-polyfill'
-import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { useStoragedDataList, useStorage } from '@/lib/hooks'
 import { addDataToStrageList } from '@/lib/handle-storage'
