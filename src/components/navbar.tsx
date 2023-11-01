@@ -70,16 +70,6 @@ export const Navbar = () => {
       <div className="flex h-full justify-between items-center border-b pb-3 border-solid border-primary/10">
         <div className="flex items-center">
           <h2 className="ml-2 text-lg font-[Poppins] select-none">Marktodo</h2>
-
-          <Button
-            size="icon"
-            variant="ghost"
-            className="w-6 h-6 ml-2"
-            onClick={() =>
-              window.open('https://github.com/codeacme17/marktodo', '_blank')
-            }>
-            <Github className="w-4 h-4 stroke-primary/40" />
-          </Button>
         </div>
 
         <div>
@@ -140,6 +130,16 @@ export const Navbar = () => {
             ) : (
               <Moon className="w-4 h-4" />
             )}
+          </Button>
+
+          <Button
+            size="icon"
+            variant="ghost"
+            className="w-6 h-6 ml-2"
+            onClick={() =>
+              window.open('https://github.com/codeacme17/marktodo', '_blank')
+            }>
+            <Github className="w-4 h-4" />
           </Button>
         </div>
       </div>
