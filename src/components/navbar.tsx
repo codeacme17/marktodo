@@ -72,6 +72,24 @@ export const Navbar = () => {
       <div className="flex h-full justify-between items-center border-b pb-3 border-solid border-primary/10">
         <div className="flex items-center">
           <h2 className="ml-2 text-lg font-[Poppins] select-none">Marktodo</h2>
+
+          <a
+            className="ml-2 cursor-pointer"
+            onClick={() =>
+              window.open('https://github.com/codeacme17/marktodo', '_blank')
+            }>
+            {theme === 'dark' ? (
+              <img
+                alt="GitHub Repo stars"
+                src="https://img.shields.io/github/stars/codeacme17/marktodo?style=flat&logo=github&labelColor=242d3e&color=242d3e"
+              />
+            ) : (
+              <img
+                alt="GitHub Repo stars"
+                src="https://img.shields.io/github/stars/codeacme17/marktodo?logo=github&logoColor=1E1E1E&labelColor=e4e6eb&color=b0b7c4"
+              />
+            )}
+          </a>
         </div>
 
         <div>
