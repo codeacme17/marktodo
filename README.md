@@ -33,7 +33,11 @@ Compared to other todo plugins, they are more feature-rich, but that also means 
 
 ## Demo
 
-https://github.com/codeacme17/marktodo/assets/67408722/8edf1827-3130-44e4-8ac6-430539156527
+
+
+https://github.com/codeacme17/marktodo/assets/67408722/45b420b1-b080-4716-88bf-fad065eacaac
+
+
 
 
 
