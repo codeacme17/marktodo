@@ -40,19 +40,32 @@ browser.storage.local.onChanged.addListener(async (changes) => {
 let linkText: any = null
 let iconUrl: string = ''
 document.addEventListener('contextmenu', async (event) => {
-  if (!(event.target instanceof HTMLAnchorElement)) return
+  if (!(event.target instanceof HTMLElement)) return
+
+  // Get the link text
+  // Possible targets: <a>, <a> child, <a> grandchild
+  let currentTarget
+  if (event.target instanceof HTMLAnchorElement) {
+    currentTarget = event.target
+  } else if (event.target.parentElement instanceof HTMLAnchorElement) {
+    currentTarget = event.target.parentElement
+  } else if (
+    event.target.parentElement!.parentElement instanceof HTMLAnchorElement
+  ) {
+    currentTarget = event.target.parentElement!.parentElement
+  } else return
 
   const iconElement = document.querySelector(
-    'link[rel="icon"], link[rel="shortcut icon"]',
+    'link[rel="icon"], link[rel="shortcut icon"]'
   ) as HTMLLinkElement
 
   if (iconElement && iconElement.href) iconUrl = iconElement.href
 
   // To get the link text, we need to check if the link is an anchor,
   // or a link with a hash
-  if (event.target.hash === '') {
-    linkText = event.target.textContent
-  } else linkText = event.target.hash
+  if (currentTarget!.hash === '') {
+    linkText = currentTarget!.textContent
+  } else linkText = currentTarget!.hash
 })
 
 // Send the link info to the background script
