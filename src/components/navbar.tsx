@@ -132,7 +132,7 @@ export const Navbar = () => {
             )}
           </Button>
 
-          <Button
+          {/* <Button
             size="icon"
             variant="ghost"
             className="w-6 h-6 ml-2"
@@ -140,7 +140,7 @@ export const Navbar = () => {
               window.open('https://github.com/codeacme17/marktodo', '_blank')
             }>
             <Github className="w-4 h-4" />
-          </Button>
+          </Button> */}
         </div>
       </div>
     </nav>
