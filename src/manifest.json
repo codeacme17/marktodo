@@ -12,7 +12,6 @@
   "permissions": [
     "contextMenus",
     "storage",
-    "webNavigation",
     "activeTab",
     "tabs",
     "http://*/*",
