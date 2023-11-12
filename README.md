@@ -1,4 +1,4 @@
-<img src="/docs/social.png"/>
+![Frame 2](https://github.com/codeacme17/marktodo/assets/67408722/f704e804-e3ca-4004-9924-e7c39c8f2f15)
 
 <h1 >Marktodo</h1>
 
