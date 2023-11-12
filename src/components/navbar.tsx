@@ -21,7 +21,6 @@ import {
 import {
   Moon,
   Sun,
-  Github,
   ArrowDownNarrowWide,
   ArrowUpNarrowWide,
   Plus,
@@ -74,25 +73,13 @@ export const Navbar = () => {
 
         <div>
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="w-6 h-6 mr-2">
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{browser.i18n.getMessage('hint_mark_current_web')}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <DropdownMenuTrigger className="mr-2">
+              <Button size="icon" variant="ghost" className="w-6 h-6">
+                <Plus className="w-4 h-4" />
+              </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-background">
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => handleMarkCurrentWeb(3)}>
                   {browser.i18n.getMessage('menu_critical')}
@@ -131,16 +118,6 @@ export const Navbar = () => {
               <Moon className="w-4 h-4" />
             )}
           </Button>
-
-          {/* <Button
-            size="icon"
-            variant="ghost"
-            className="w-6 h-6 ml-2"
-            onClick={() =>
-              window.open('https://github.com/codeacme17/marktodo', '_blank')
-            }>
-            <Github className="w-4 h-4" />
-          </Button> */}
         </div>
       </div>
     </nav>

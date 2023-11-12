@@ -4,69 +4,65 @@
 
 @layer base {
   :root {
-    --brand-primary: #be185d;
+    --background: 214 30% 95%;
+    --foreground: 214 30% 15%;
 
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --card: 214 30% 95%;
+    --card-foreground: 214 30% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --popover: 214 30% 95%;
+    --popover-foreground: 214 30% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --primary: 214 30% 15%;
+    --primary-foreground: 214 30% 95%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --secondary: 214 30% 85%;
+    --secondary-foreground: 214 30% 15%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --muted: 214 30% 85%;
+    --muted-foreground: 214 30% 45%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --accent: 214 30% 75%;
+    --accent-foreground: 214 30% 15%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --destructive: 214 84.2% 60.2%;
+    --destructive-foreground: 214 30% 95%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 214 30% 80%;
+    --input: 214 30% 80%;
+    --ring: 214 30% 15%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --brand-primary: #ec4899;
+    --background: 214 30% 8%;
+    --foreground: 214 30% 95%;
 
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --card: 214 30% 15%;
+    --card-foreground: 214 30% 95%;
 
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --popover: 214 30% 15%;
+    --popover-foreground: 214 30% 95%;
 
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --primary: 214 30% 95%;
+    --primary-foreground: 214 30% 15%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    --secondary: 214 30% 25%;
+    --secondary-foreground: 214 30% 95%;
 
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    --muted: 214 30% 25%;
+    --muted-foreground: 214 30% 65%;
 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --accent: 214 30% 35%;
+    --accent-foreground: 214 30% 95%;
 
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --destructive: 214 62.8% 30.6%;
+    --destructive-foreground: 214 30% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --border: 214 30% 25%;
+    --input: 214 30% 25%;
+    --ring: 214 30% 75%;
   }
 }
 
@@ -81,7 +77,6 @@
   }
 }
 
-/* 通用样式 */
 ::-webkit-scrollbar {
   @apply w-1;
 }
