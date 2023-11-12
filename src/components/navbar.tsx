@@ -73,22 +73,10 @@ export const Navbar = () => {
 
         <div>
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="w-6 h-6 mr-2">
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{browser.i18n.getMessage('hint_mark_current_web')}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <DropdownMenuTrigger className="mr-2">
+              <Button size="icon" variant="ghost" className="w-6 h-6">
+                <Plus className="w-4 h-4" />
+              </Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent>
