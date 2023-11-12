@@ -79,7 +79,7 @@ export const Navbar = () => {
               </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-background">
               <DropdownMenuGroup>
                 <DropdownMenuItem onClick={() => handleMarkCurrentWeb(3)}>
                   {browser.i18n.getMessage('menu_critical')}
