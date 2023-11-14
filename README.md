@@ -19,6 +19,7 @@ When I browse through technical documentation or do exercises on websites, I com
 Therefore, the purpose of Marktodo is to allow you to mark these important pieces of content and remind yourself to review them after a certain period of time.
 
 ## Why Marktodo
+
 Compared to other todo plugins, they are more feature-rich, but that also means they are more cumbersome to use. I want Marktodo to be quick and easy! Users only need two clicks to add something to the todo list, and the same two clicks to remove it from the list.
 
 ## Download
@@ -37,11 +38,4 @@ Compared to other todo plugins, they are more feature-rich, but that also means 
 
 ## Demo
 
-
-
 https://github.com/codeacme17/marktodo/assets/67408722/45b420b1-b080-4716-88bf-fad065eacaac
-
-
-
-
-
