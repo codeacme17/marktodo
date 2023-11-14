@@ -6,12 +6,6 @@ import { ListDataItem, Priority, SortType } from '@/lib/types'
 
 import { Button } from '@/components/ui/button'
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,

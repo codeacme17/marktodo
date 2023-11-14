@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import webExtension, { readJsonFile } from 'vite-plugin-web-extension'
 import path from 'node:path'
+import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
+import webExtension, { readJsonFile } from 'vite-plugin-web-extension'
 
 function generateManifest() {
   const manifest = readJsonFile('src/manifest.json')
   const pkg = readJsonFile('package.json')
+
   return {
     name: 'Marktodo',
     auther: pkg.author,
@@ -13,11 +14,6 @@ function generateManifest() {
     version: pkg.version,
     ...manifest,
   }
-}
-
-function switchOutDir() {
-  if (process.env.TARGET === 'firefox') return './firefox-dist'
-  else return './dist'
 }
 
 export default defineConfig({
@@ -29,10 +25,6 @@ export default defineConfig({
       browser: process.env.TARGET || 'chrome',
     }),
   ],
-
-  build: {
-    outDir: switchOutDir(),
-  },
 
   resolve: {
     alias: {
