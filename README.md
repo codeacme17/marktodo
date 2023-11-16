@@ -10,6 +10,11 @@ Browser extension allows customers to mark link or web to to-do lists 🌐🏷�
 </a>
 
 <img src="https://img.shields.io/badge/License-MIT-%23242D3E?style=flat&labelColor=%23242D3E" />
+
+<!--
+<img src="https://img.shields.io/chrome-web-store/v/cebpakakmippceefanjkmkjiampkljpp?logo=googlechrome&logoColor=%23fff&labelColor=%23242D3E&color=%23242D3E" />
+-->
+
 </p>
 
 ## Inspiration
