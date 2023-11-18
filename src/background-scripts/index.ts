@@ -3,10 +3,6 @@ import { addDataToStrageList, getStoragedDataList } from '@/lib/handle-storage'
 import { ListDataItem } from '@/lib/types'
 import { ACTION } from '@/lib/constants'
 
-browser.action.setBadgeBackgroundColor({
-  color: '#1D2837',
-})
-
 setBadgeContent()
 
 browser.runtime.onInstalled.addListener(async () => {
@@ -102,5 +98,9 @@ function setBadgeContent() {
     browser.action.setBadgeText({
       text: !!list.length ? list.length.toString() : null,
     })
+  })
+
+  browser.action.setBadgeBackgroundColor({
+    color: '#1D2837',
   })
 }
