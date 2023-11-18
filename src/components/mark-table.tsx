@@ -64,14 +64,14 @@ export const MarkTable = () => {
   const handleMaskVisible = (item: ListDataItem, maskVisible: boolean) => {
     setStoragedDataList(
       storagedDataList.map((dataItem) =>
-        dataItem === item ? { ...item, maskVisible } : dataItem,
-      ),
+        dataItem === item ? { ...item, maskVisible } : dataItem
+      )
     )
   }
 
   const handleSelectLevel = async (item: ListDataItem, level: Level) => {
     setStoragedDataList(
-      storagedDataList.filter((dataItem) => dataItem.src !== item.src),
+      storagedDataList.filter((dataItem) => dataItem.src !== item.src)
     )
   }
 
@@ -80,7 +80,7 @@ export const MarkTable = () => {
       storagedDataList.map((dataItem) => {
         if (dataItem.src !== item.src) return dataItem
         return { ...item, priority }
-      }),
+      })
     )
   }
 
@@ -90,7 +90,9 @@ export const MarkTable = () => {
         <TableBody>
           {storagedDataList.map((item) => (
             <TableRow className="relative" key={item.src}>
-              <TableCell className="font-medium pl-2">
+              <TableCell
+                className="font-medium pl-2"
+                style={{ wordBreak: 'break-word' }}>
                 <div className="flex">
                   <PrioritySwitchButton
                     item={item}
