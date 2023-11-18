@@ -1,7 +1,13 @@
 import browser from 'webextension-polyfill'
-import { addDataToStrageList } from '@/lib/handle-storage'
+import { addDataToStrageList, getStoragedDataList } from '@/lib/handle-storage'
 import { ListDataItem } from '@/lib/types'
 import { ACTION } from '@/lib/constants'
+
+browser.action.setBadgeBackgroundColor({
+  color: '#1D2837',
+})
+
+setBadgeContent()
 
 browser.runtime.onInstalled.addListener(async () => {
   browser.contextMenus.create({
@@ -85,3 +91,16 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
   await addDataToStrageList(data, tab)
 })
+
+browser.storage.onChanged.addListener(async (changes) => {
+  if (!changes['marktodo-data-list']) return
+  setBadgeContent()
+})
+
+function setBadgeContent() {
+  getStoragedDataList().then((list) => {
+    browser.action.setBadgeText({
+      text: !!list.length ? list.length.toString() : null,
+    })
+  })
+}
