@@ -56,7 +56,7 @@ document.addEventListener('contextmenu', async (event) => {
   } else return
 
   const iconElement = document.querySelector(
-    'link[rel="icon"], link[rel="shortcut icon"]'
+    'link[rel="icon"], link[rel="shortcut icon"]',
   ) as HTMLLinkElement
 
   if (iconElement && iconElement.href) iconUrl = iconElement.href

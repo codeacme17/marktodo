@@ -3,9 +3,13 @@ import { addDataToStrageList, getStoragedDataList } from '@/lib/handle-storage'
 import { ListDataItem } from '@/lib/types'
 import { ACTION } from '@/lib/constants'
 
-setBadgeContent()
+browser.runtime.onStartup.addListener(() => {
+  setBadgeContent()
+})
 
 browser.runtime.onInstalled.addListener(async () => {
+  setBadgeContent()
+
   browser.contextMenus.create({
     id: 'marktodo-menu-item',
     title: browser.i18n.getMessage('extension_name'),
@@ -96,7 +100,7 @@ browser.storage.onChanged.addListener(async (changes) => {
 function setBadgeContent() {
   getStoragedDataList().then((list) => {
     browser.action.setBadgeText({
-      text: !!list.length ? list.length.toString() : null,
+      text: list.length ? list.length.toString() : null,
     })
   })
 
