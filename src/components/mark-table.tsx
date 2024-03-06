@@ -96,7 +96,7 @@ export const MarkTable = () => {
               <Reorder.Item key={item.src} value={item}>
                 <TableRow className="relative cursor-grab" key={item.src}>
                   <TableCell
-                    className="font-medium pl-2"
+                    className="font-medium pl-2 w-full"
                     style={{ wordBreak: 'break-word' }}>
                     <div className="flex">
                       <PrioritySwitchButton
