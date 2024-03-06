@@ -1,7 +1,7 @@
 {
   "name": "marktodo",
   "private": true,
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "Browser extension allows customers to mark links/knowledge to to-do lists",
   "author": "leyoonafr <codeacme17@gmail.com>",
   "license": "MIT",
