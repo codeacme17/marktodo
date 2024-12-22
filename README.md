@@ -29,17 +29,28 @@ Compared to other todo plugins, they are more feature-rich, but that also means 
 
 ## Download
 
-<p>
-  <a href="https://addons.mozilla.org/firefox/addon/marktodo/">
-    <img height="60" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg">
-  </a>
-  <a href="https://chrome.google.com/webstore/detail/marktodo/cebpakakmippceefanjkmkjiampkljpp?utm_source=ext_sidebar&hl=en-US">
-    <img height="60" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png"/>
-  </a>
-  <a href="https://microsoftedge.microsoft.com/addons/detail/marktodo/cokonaiohkijfceilgcnnbbeblgpfmci">
-    <img height="60" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Get_it_from_Microsoft_Badge.svg/320px-Get_it_from_Microsoft_Badge.svg.png"/>
-  </a>
-</p>
+<table cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="center">
+      <a align="center" href="https://chrome.google.com/webstore/detail/marktodo/cebpakakmippceefanjkmkjiampkljpp?utm_source=ext_sidebar&hl=en-US">
+        <img height="60"  src="https://user-images.githubusercontent.com/22908993/166417152-f870bfbd-1770-4c28-b69d-a7303aebc9a6.png" alt="Chrome web store" />
+        <p align="center">Chrome Web Store</p>
+      </a>
+    </td>
+    <td valign="center">
+      <a href="https://addons.mozilla.org/firefox/addon/marktodo/">
+        <img height="60"  src="https://user-images.githubusercontent.com/22908993/166417727-3481fef4-00e5-4cf0-bb03-27fb880d993c.png" alt="Firefox add-ons" />
+        <p align="center">Firefox Add-ons</p>
+      </a>
+    </td>
+        <td valign="center">
+      <a href="https://microsoftedge.microsoft.com/addons/detail/marktodo/cokonaiohkijfceilgcnnbbeblgpfmci"/>
+      <img height="60"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Get_it_from_Microsoft_Badge.svg/320px-Get_it_from_Microsoft_Badge.svg.png"  alt="Microsoft web store" />
+        <p align="center">Microsoft Web Store</p>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Demo
 
